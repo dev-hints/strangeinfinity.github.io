@@ -28,23 +28,23 @@
   <meta name="keywords" content="CalcCosmos, scientific calculator, cosmic calculator, high precision math, glassmorphism calculator, StrangeInfinity" />
   <meta name="author" content="StrangeInfinity" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <link rel="canonical" href="https://strangeinfinity.github.io/CalcCosmos/" />
+  <link rel="canonical" href="https://www.strangeinfinity.store/CalcCosmos/" />
   <meta name="theme-color" content="#f59e0b" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://strangeinfinity.github.io/CalcCosmos/" />
+  <meta property="og:url" content="https://www.strangeinfinity.store/CalcCosmos/" />
   <meta property="og:site_name" content="CalcCosmos Calculator" />
   <meta property="og:title" content="CalcCosmos Calculator — High-Precision Scientific Math" />
   <meta property="og:description" content="High-precision scientific computation engine with cosmic glassmorphism UI, trigonometric operations, and persistent calculation history." />
-  <meta property="og:image" content="https://strangeinfinity.github.io/CalcCosmos/icons/calccosmos.png" />
+  <meta property="og:image" content="https://www.strangeinfinity.store/CalcCosmos/icons/calccosmos.png" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@strang3infinity" />
   <meta name="twitter:title" content="CalcCosmos Calculator — High-Precision Scientific Math" />
   <meta name="twitter:description" content="High-precision scientific computation engine with cosmic glassmorphism UI, trigonometric operations, and persistent calculation history." />
-  <meta name="twitter:image" content="https://strangeinfinity.github.io/CalcCosmos/icons/calccosmos.png" />
+  <meta name="twitter:image" content="https://www.strangeinfinity.store/CalcCosmos/icons/calccosmos.png" />
 
   <!-- JSON-LD SoftwareApplication Schema -->
   <script type="application/ld+json">
@@ -64,7 +64,7 @@
     "author": {
       "@type": "Organization",
       "name": "StrangeInfinity",
-      "url": "https://strangeinfinity.github.io/"
+      "url": "https://www.strangeinfinity.store/"
     }
   }
   </script>
@@ -413,7 +413,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2026 <a href="https://strangeinfinity.github.io/">StrangeInfinity</a>. Open-source under MIT License.</p>
+      <p class="footer-copy">© 2026 <a href="https://www.strangeinfinity.store/">StrangeInfinity</a>. Open-source under MIT License.</p>
     </div>
   </div>
 </footer>
@@ -491,19 +491,82 @@
           if (exprEl) exprEl.innerText = currentExpr;
         } else if (act === '=') {
           try {
-            // Safe mathematical expression evaluator with strict whitelist
-            const sanitized = currentExpr
-              .replace(/π/g, `${Math.PI}`)
-              .replace(/sin\(/g, 'Math.sin(')
-              .replace(/cos\(/g, 'Math.cos(')
-              .replace(/tan\(/g, 'Math.tan(')
-              .replace(/sqrt\(/g, 'Math.sqrt(');
-            // Security whitelist regex validation: only allows math tokens
-            if (!/^[0-9+\-*/().\sMathsincotarqpPIe]+$/.test(sanitized)) {
-              if (resultEl) resultEl.innerText = 'Invalid Input';
-            } else {
-              const res = new Function('"use strict"; return (' + sanitized + ')')();
-              if (resultEl) resultEl.innerText = (typeof res === 'number' && Number.isFinite(res)) ? (Math.round(res * 1e10) / 1e10) : 'Error';
+            if (!currentExpr.trim()) return;
+            // Safe mathematical expression parser (Zero eval, strict CSP compliant)
+            const safeEvaluate = (raw) => {
+              let expr = raw.replace(/\s+/g, '');
+              if (!expr) return 0;
+              let pos = 0;
+              const peek = () => expr[pos] || '';
+              const get = () => expr[pos++] || '';
+
+              const parsePrimary = () => {
+                let sign = 1;
+                while (peek() === '+' || peek() === '-') {
+                  if (get() === '-') sign *= -1;
+                }
+                if (peek() === '(') {
+                  get();
+                  const val = parseExpr();
+                  if (peek() === ')') get();
+                  return sign * val;
+                }
+                if (expr.startsWith('sin(', pos)) { pos += 4; const v = parseExpr(); if (peek() === ')') get(); return sign * Math.sin(v); }
+                if (expr.startsWith('cos(', pos)) { pos += 4; const v = parseExpr(); if (peek() === ')') get(); return sign * Math.cos(v); }
+                if (expr.startsWith('tan(', pos)) { pos += 4; const v = parseExpr(); if (peek() === ')') get(); return sign * Math.tan(v); }
+                if (expr.startsWith('sqrt(', pos)) { pos += 5; const v = parseExpr(); if (peek() === ')') get(); return sign * Math.sqrt(v); }
+                if (expr.startsWith('log(', pos)) { pos += 4; const v = parseExpr(); if (peek() === ')') get(); return sign * Math.log10(v); }
+                if (expr.startsWith('ln(', pos)) { pos += 3; const v = parseExpr(); if (peek() === ')') get(); return sign * Math.log(v); }
+                if (peek() === 'π') { get(); return sign * Math.PI; }
+                if (peek() === 'e') { get(); return sign * Math.E; }
+
+                let numStr = '';
+                while (/[0-9.]/.test(peek())) numStr += get();
+                if (!numStr) throw new Error('Syntax Error');
+                return sign * parseFloat(numStr);
+              };
+
+              const parseFactor = () => {
+                let left = parsePrimary();
+                if (peek() === '^') {
+                  get();
+                  left = Math.pow(left, parseFactor());
+                }
+                return left;
+              };
+
+              const parseTerm = () => {
+                let left = parseFactor();
+                while (peek() === '*' || peek() === '/') {
+                  const op = get();
+                  const right = parseFactor();
+                  if (op === '*') left *= right;
+                  else {
+                    if (right === 0) throw new Error('DivZero');
+                    left /= right;
+                  }
+                }
+                return left;
+              };
+
+              const parseExpr = () => {
+                let left = parseTerm();
+                while (peek() === '+' || peek() === '-') {
+                  const op = get();
+                  const right = parseTerm();
+                  if (op === '+') left += right;
+                  else left -= right;
+                }
+                return left;
+              };
+
+              const res = parseExpr();
+              return res;
+            };
+
+            const res = safeEvaluate(currentExpr);
+            if (resultEl) {
+              resultEl.innerText = (typeof res === 'number' && Number.isFinite(res)) ? (Math.round(res * 1e10) / 1e10) : 'Error';
             }
           } catch(e) {
             if (resultEl) resultEl.innerText = 'Error';
@@ -514,6 +577,7 @@
           else if (act === 'cos') currentExpr += 'cos(';
           else if (act === 'tan') currentExpr += 'tan(';
           else if (act === 'pi') currentExpr += 'π';
+          else if (act === 'pow') currentExpr += '^';
           else currentExpr += act;
           if (exprEl) exprEl.innerText = currentExpr;
         }
