@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCEZHSD62X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RCEZHSD62X');
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png" />
+
+  <!-- Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net data:; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://img.shields.io https://avatars.githubusercontent.com https://github.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Primary Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404: Lost in Deep Space — StrangeInfinity</title>
+  <meta name="title" content="404: Lost in Deep Space — StrangeInfinity" />
+  <meta name="description" content="The cosmic coordinate you are seeking does not exist or has drifted beyond the event horizon. Return to StrangeInfinity." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://www.strangeinfinity.store/404.html" />
+  <meta name="theme-color" content="#4f46e5" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/variables.css" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+
+  <style>
+    .error-container {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-8) var(--space-4);
+      position: relative;
+      z-index: 1;
+    }
+    .error-code {
+      font-family: var(--font-mono);
+      font-size: clamp(5rem, 15vw, 10rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: var(--space-2);
+      background: linear-gradient(135deg, var(--color-primary-light), var(--color-cyan), var(--color-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 40px rgba(99,102,241,0.3));
+    }
+    .error-tag {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-primary-light);
+      margin-bottom: var(--space-4);
+      background: var(--bg-card);
+      border: var(--glass-border);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      display: inline-block;
+    }
+    .error-title {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: var(--space-4);
+    }
+    .error-desc {
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto var(--space-8);
+      font-size: var(--text-base);
+      line-height: 1.7;
+    }
+    .error-actions {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .popular-links {
+      margin-top: var(--space-10);
+      padding-top: var(--space-6);
+      border-top: var(--glass-border);
+      max-width: 600px;
+      width: 100%;
+    }
+    .popular-links-title {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .popular-links-grid {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle Background Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navbar -->
+  <header role="banner">
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container nav-inner">
+        <a href="/" class="nav-logo" aria-label="StrangeInfinity Home">
+          <img src="assets/images/logo.png" alt="StrangeInfinity Logo" width="38" height="38" />
+          <span class="nav-logo-text">StrangeInfinity</span>
+        </a>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 404 Main Content -->
+  <main id="main-content">
+    <div class="container error-container">
+      <span class="error-tag"><i class="fa-solid fa-satellite-dish"></i> Deep Space Anomaly</span>
+      <h1 class="error-code">404</h1>
+      <h2 class="error-title">Coordinate Out of Range</h2>
+      <p class="error-desc">
+        The destination you are trying to reach has drifted beyond the known cosmic perimeter. It may have been relocated, decommissioned, or never existed in this quadrant.
+      </p>
+
+      <div class="error-actions">
+        <a href="/" class="btn btn-primary">
+          <i class="fa-solid fa-house"></i> Return to Mission Control
+        </a>
+        <a href="/#projects" class="btn btn-outline">
+          <span><i class="fa-solid fa-rocket"></i> Explore Projects</span>
+        </a>
+      </div>
+
+      <div class="popular-links">
+        <p class="popular-links-title">Quick Portals</p>
+        <div class="popular-links-grid">
+          <a href="Infinity-Browser/" class="project-tag" style="text-decoration:none"><i class="fa-solid fa-globe"></i> Infinity Browser</a>
+          <a href="Infinity-Writer/" class="project-tag" style="text-decoration:none"><i class="fa-solid fa-feather-pointed"></i> Infinity Writer</a>
+          <a href="AirPointer/" class="project-tag" style="text-decoration:none"><i class="fa-solid fa-hand-pointer"></i> AirPointer</a>
+          <a href="Notes-App/" class="project-tag" style="text-decoration:none"><i class="fa-solid fa-note-sticky"></i> Cosmic Notes</a>
+          <a href="CalcCosmos/" class="project-tag" style="text-decoration:none"><i class="fa-solid fa-calculator"></i> CalcCosmos</a>
+          <a href="Gemini-CLI/" class="project-tag" style="text-decoration:none"><i class="fa-solid fa-terminal"></i> Gemini CLI</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: var(--glass-border); padding: var(--space-6) 0;">
+        <p class="footer-copy">© 2026 <a href="https://www.strangeinfinity.store/">StrangeInfinity</a>. Open-source under MIT License.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/particles.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ThemeManager.init();
+      ParticleEngine.init();
+    });
+  </script>
+</body>
+</html>
