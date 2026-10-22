@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCEZHSD62X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RCEZHSD62X');
+  </script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/mydrive.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/mydrive.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/mydrive.png" />
+
+  <!-- Security Headers & Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net data:; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://img.shields.io https://avatars.githubusercontent.com https://github.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Primary Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyDrive Documentation — Deployment, Security &amp; REST API Reference</title>
+  <meta name="title" content="MyDrive Documentation — Deployment, Security &amp; REST API Reference" />
+  <meta name="description" content="Official documentation for MyDrive. Installation instructions for Docker, Linux VPS, and Android Termux, chunked upload architecture, HTTP 206 streaming, security model, and complete REST API reference." />
+  <meta name="keywords" content="MyDrive documentation, MyDrive manual, self-hosted drive docs, FastAPI storage API, chunked upload specification, Termux cloud server, StrangeInfinity" />
+  <meta name="author" content="StrangeInfinity" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.strangeinfinity.store/MyDrive/docs.html" />
+  <meta name="theme-color" content="#4f46e5" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.strangeinfinity.store/MyDrive/docs.html" />
+  <meta property="og:site_name" content="MyDrive Docs" />
+  <meta property="og:title" content="MyDrive Documentation — Deployment &amp; REST API" />
+  <meta property="og:description" content="Technical documentation covering Docker deployment, Termux setup, chunked upload engine, and REST API endpoints for MyDrive." />
+  <meta property="og:image" content="https://www.strangeinfinity.store/MyDrive/icons/mydrive.png" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@strang3infinity" />
+  <meta name="twitter:title" content="MyDrive Documentation — Deployment &amp; REST API" />
+  <meta name="twitter:description" content="Technical documentation covering Docker deployment, Termux setup, chunked upload engine, and REST API endpoints for MyDrive." />
+  <meta name="twitter:image" content="https://www.strangeinfinity.store/MyDrive/icons/mydrive.png" />
+
+  <!-- JSON-LD TechArticle Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "MyDrive Documentation — Deployment, Security & REST API Reference",
+    "description": "Comprehensive technical manual for MyDrive self-hosted private cloud storage and media streaming server.",
+    "url": "https://www.strangeinfinity.store/MyDrive/docs.html",
+    "image": "https://www.strangeinfinity.store/MyDrive/icons/mydrive.png",
+    "about": {
+      "@type": "SoftwareApplication",
+      "name": "MyDrive",
+      "operatingSystem": "Linux, Docker, Raspberry Pi, Android (Termux)",
+      "downloadUrl": "https://github.com/dev-hints/mydrive/archive/refs/heads/main.zip"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "StrangeInfinity",
+      "url": "https://www.strangeinfinity.store/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StrangeInfinity",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.strangeinfinity.store/assets/images/logo.png"
+      }
+    },
+    "datePublished": "2026-10-22T00:00:00+00:00",
+    "dateModified": "2026-10-22T12:00:00+00:00"
+  }
+  </script>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" integrity="sha512-X2hbziex+UPQ+KdI4BWI+39jEDhf2Smc6bfFI/FTIzWnt7mbwZCUU4RWalnMfxtHCpISlexzmd2kvPFJCliiPA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Site Design System CSS -->
+  <link rel="stylesheet" href="../assets/css/variables.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+
+  <!-- Documentation Layout Styles -->
+  <style>
+    .docs-container {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: var(--space-8);
+      padding-top: calc(var(--nav-height) + var(--space-8));
+      padding-bottom: var(--space-20);
+    }
+    @media (max-width: 992px) {
+      .docs-container { grid-template-columns: 1fr; }
+      .docs-sidebar { position: static !important; width: 100% !important; }
+    }
+    .docs-sidebar {
+      position: sticky;
+      top: calc(var(--nav-height) + var(--space-6));
+      height: fit-content;
+      background: var(--bg-card);
+      border: var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .docs-toc-title {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .docs-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .docs-nav-link {
+      display: block;
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: var(--radius-md);
+      transition: var(--transition-fast);
+    }
+    .docs-nav-link:hover, .docs-nav-link.active {
+      color: #fff;
+      background: rgba(99, 102, 241, 0.15);
+      border-left: 2px solid #6366f1;
+    }
+    .docs-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+    .docs-section {
+      background: var(--bg-card);
+      border: var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      scroll-margin-top: calc(var(--nav-height) + var(--space-6));
+    }
+    .docs-section h2 {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      color: var(--text-primary);
+    }
+    .docs-section h3 {
+      font-size: var(--text-lg);
+      margin: var(--space-6) 0 var(--space-3) 0;
+      color: #a5b4fc;
+    }
+    .docs-section p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--space-4);
+    }
+    .code-block {
+      background: #090d16;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      margin: var(--space-4) 0;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: #a5b4fc;
+      overflow-x: auto;
+    }
+    .sidebar-manual-btn {
+      width: 100%;
+      justify-content: center;
+      border-color: rgba(99, 102, 241, 0.4);
+      color: #a5b4fc;
+      transition: var(--transition-normal);
+    }
+    .sidebar-manual-btn:hover {
+      background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%) !important;
+      border-color: transparent !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+    }
+    .sidebar-manual-btn:active {
+      transform: translateY(0);
+    }
+    .sidebar-manual-btn span {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ CANVAS BACKGROUND ═══════════════ -->
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<header role="banner">
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <!-- Logo -->
+      <a href="../index.html" class="nav-logo" aria-label="StrangeInfinity Home">
+        <img src="../assets/images/logo.png" alt="StrangeInfinity" width="38" height="38" loading="lazy" />
+        <span>Strange<span style="color:var(--color-secondary)">Infinity</span></span>
+      </a>
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" role="list">
+        <li><a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left"></i> MyDrive Home</a></li>
+        <li><a href="#overview" class="nav-link active">Overview</a></li>
+        <li><a href="#deployment" class="nav-link">Deployment</a></li>
+        <li><a href="#docker" class="nav-link">Docker</a></li>
+        <li><a href="#security" class="nav-link">Security</a></li>
+        <li><a href="#api" class="nav-link">REST API</a></li>
+      </ul>
+      <!-- Actions -->
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode"><i class="fa-solid fa-moon"></i></button>
+        <a href="index.html#download" class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i> Downloads</a>
+        <button id="hamburger" class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> MyDrive Home</a>
+    <a href="#overview" class="nav-link"><i class="fa-solid fa-info-circle"></i> Overview</a>
+    <a href="#deployment" class="nav-link"><i class="fa-solid fa-server"></i> Deployment</a>
+    <a href="#docker" class="nav-link"><i class="fa-brands fa-docker"></i> Docker</a>
+    <a href="#termux" class="nav-link"><i class="fa-solid fa-mobile-screen"></i> Android Server</a>
+    <a href="#security" class="nav-link"><i class="fa-solid fa-shield"></i> Security Model</a>
+    <a href="#api" class="nav-link"><i class="fa-solid fa-network-wired"></i> REST API</a>
+  </div>
+</header>
+
+<main class="container">
+  <div class="docs-container">
+
+    <!-- Sticky Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="docs-toc-title"><i class="fa-solid fa-book-bookmark"></i> Table of Contents</div>
+      <nav aria-label="Documentation Navigation">
+        <ul class="docs-nav-list">
+          <li><a href="#overview" class="docs-nav-link active">1. Architecture &amp; Storage</a></li>
+          <li><a href="#deployment" class="docs-nav-link">2. Linux VPS Deployment</a></li>
+          <li><a href="#docker" class="docs-nav-link">3. Docker &amp; Docker Compose</a></li>
+          <li><a href="#termux" class="docs-nav-link">4. Android Pocket Server</a></li>
+          <li><a href="#uploads" class="docs-nav-link">5. Chunked Upload Protocol</a></li>
+          <li><a href="#media" class="docs-nav-link">6. HTTP 206 Media Streaming</a></li>
+          <li><a href="#contacts" class="docs-nav-link">7. Phone Contacts Sync</a></li>
+          <li><a href="#security" class="docs-nav-link">8. Security &amp; RBAC</a></li>
+          <li><a href="#api" class="docs-nav-link">9. REST API Reference</a></li>
+        </ul>
+      </nav>
+
+      <div style="margin-top:var(--space-6);padding-top:var(--space-4);border-top:var(--glass-border);display:flex;flex-direction:column;gap:8px;">
+        <a href="https://github.com/dev-hints/mydrive/archive/refs/heads/main.zip" download class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">
+          <span><i class="fa-solid fa-download"></i> Source (.zip)</span>
+        </a>
+        <a href="MyDrive_User_Manual.pdf" download class="btn btn-outline btn-sm sidebar-manual-btn">
+          <span><i class="fa-solid fa-file-pdf"></i> PDF Manual</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="docs-content">
+
+      <!-- 1. Overview & Architecture -->
+      <section id="overview" class="docs-section">
+        <h2><i class="fa-solid fa-cloud" style="color:#6366f1"></i> 1. Architecture &amp; Storage</h2>
+        <p>
+          <strong>MyDrive</strong> is an enterprise-grade, self-hosted file management and media streaming server built with <strong>FastAPI</strong> and <strong>SQLite WAL mode</strong>.
+        </p>
+        <p>
+          It strictly separates user spaces on disk:
+        </p>
+        <div class="code-block">
+Storage Tree:
+data/
+ ├── storage/users/&lt;user_id&gt;/      # Isolated user directory tree
+ ├── uploads_temp/                  # Sliced 4MB temporary binary chunks
+ ├── trash/&lt;user_id&gt;/              # Two-stage isolated recycle bin
+ ├── avatars/                       # User profile pictures
+ └── mydrive.db                     # SQLite WAL database (auth, tokens, quotas)
+        </div>
+      </section>
+
+      <!-- 2. Linux VPS Deployment -->
+      <section id="deployment" class="docs-section">
+        <h2><i class="fa-solid fa-server" style="color:#a5b4fc"></i> 2. Linux VPS / Bare Metal Setup</h2>
+        <p>Deploy directly on any Ubuntu, Debian, Fedora, Arch, or Rocky Linux server:</p>
+        <div class="code-block">
+# 1. Clone repository:
+git clone https://github.com/dev-hints/mydrive.git
+cd mydrive
+
+# 2. Create Python virtual environment:
+python3 -m venv venv
+source venv/bin/activate
+
+# 3. Install production dependencies:
+pip install -r requirements.txt
+
+# 4. Configure environment variables:
+cp .env.example .env
+nano .env
+
+# 5. Launch server:
+python3 -m app.main
+        </div>
+      </section>
+
+      <!-- 3. Docker Deployment -->
+      <section id="docker" class="docs-section">
+        <h2><i class="fa-brands fa-docker" style="color:#2496ed"></i> 3. Docker &amp; Docker Compose</h2>
+        <p>
+          The included <code>docker-compose.yml</code> sets up persistent storage volumes with non-root container security:
+        </p>
+        <div class="code-block">
+# Launch container in background:
+docker-compose up -d
+
+# Check live logs:
+docker-compose logs -f
+
+# Verify storage health:
+curl http://localhost:8000/api/health
+        </div>
+      </section>
+
+      <!-- 4. Android Termux Server -->
+      <section id="termux" class="docs-section">
+        <h2><i class="fa-solid fa-mobile-screen" style="color:#3fb950"></i> 4. Android Pocket Server (Termux)</h2>
+        <p>
+          Transform an old or spare Android smartphone into a zero-power 24/7 personal cloud server:
+        </p>
+        <div class="code-block">
+# Inside Termux with Debian PRoot:
+apt update &amp;&amp; apt install -y python3 python3-pip git
+git clone https://github.com/dev-hints/mydrive.git
+cd mydrive
+pip3 install -r requirements.txt --break-system-packages
+python3 -m app.main
+        </div>
+      </section>
+
+      <!-- 5. Chunked Uploads -->
+      <section id="uploads" class="docs-section">
+        <h2><i class="fa-solid fa-cloud-arrow-up" style="color:#f59e0b"></i> 5. Chunked Upload Protocol</h2>
+        <p>
+          Traditional multipart HTTP uploads load entire files into system memory, crashing servers on 5GB+ files. MyDrive uses an intelligent chunked upload pipeline:
+        </p>
+        <ol>
+          <li>The frontend splits files into <strong>4MB binary slices</strong>.</li>
+          <li>Each chunk is transmitted via <code>POST /api/upload/chunk</code> with byte offset and total size headers.</li>
+          <li>The server writes chunks sequentially to disk in <code>data/uploads_temp/</code>.</li>
+          <li>On completion, the file is assembled and moved to the user's storage directory with verified checksums.</li>
+          <li>If the network drops, re-uploading checks the existing chunk count and resumes without re-transmitting sent bytes.</li>
+        </ol>
+      </section>
+
+      <!-- 6. Media Streaming -->
+      <section id="media" class="docs-section">
+        <h2><i class="fa-solid fa-film" style="color:#ec4899"></i> 6. HTTP 206 Partial Content Streaming</h2>
+        <p>
+          MyDrive implements RFC 7233 byte-range serving. Browsers send:
+        </p>
+        <div class="code-block">
+GET /api/files/stream?path=movie.mp4 HTTP/1.1
+Range: bytes=10485760-20971519
+
+HTTP/1.1 206 Partial Content
+Content-Range: bytes 10485760-20971519/524288000
+Content-Length: 10485760
+Content-Type: video/mp4
+        </div>
+        <p>
+          This allows instant forward and backward seeking in multi-hour 4K videos with zero buffering delays.
+        </p>
+      </section>
+
+      <!-- 7. Contacts Sync -->
+      <section id="contacts" class="docs-section">
+        <h2><i class="fa-solid fa-address-book" style="color:#10b981"></i> 7. Phone Contacts Sync &amp; vCard</h2>
+        <p>
+          MyDrive provides a built-in contact manager directly in the browser:
+        </p>
+        <ul>
+          <li><strong>Native Phone Contact Picker:</strong> On mobile Chrome / Edge, tap "Sync Phone Contacts" to use <code>navigator.contacts.select</code> without installing native apps.</li>
+          <li><strong>vCard 3.0/4.0 Support:</strong> One-click import and export of <code>.vcf</code> files.</li>
+          <li><strong>CSV Spreadsheets:</strong> Export and import contacts with smart column header matching.</li>
+          <li><strong>Actionable Cards:</strong> Click-to-call (<code>tel:</code>) and click-to-email (<code>mailto:</code>) links.</li>
+        </ul>
+      </section>
+
+      <!-- 8. Security & RBAC -->
+      <section id="security" class="docs-section">
+        <h2><i class="fa-solid fa-shield-halved" style="color:#ef4444"></i> 8. Enterprise Security &amp; RBAC</h2>
+        <ul>
+          <li><strong>Argon2id Hashing:</strong> Passwords hashed with high-memory cryptographic cost factors.</li>
+          <li><strong>Path Traversal Defense:</strong> All file paths pass through <code>resolve_safe_path()</code> which canonicalizes paths with <code>os.path.realpath()</code> to defeat directory traversal (<code>../</code>) and symlink breakout.</li>
+          <li><strong>Double-Submit CSRF:</strong> Cryptographically signed tokens validate all <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> operations.</li>
+          <li><strong>HttpOnly Session Cookies:</strong> Cookies are invisible to client scripts, neutralizing XSS session hijacking.</li>
+          <li><strong>Brute-Force Lockout:</strong> Dynamic rate limiting locks accounts for 15 minutes after 5 consecutive failures.</li>
+        </ul>
+      </section>
+
+      <!-- 9. REST API Reference -->
+      <section id="api" class="docs-section">
+        <h2><i class="fa-solid fa-network-wired" style="color:#00f0ff"></i> 9. REST API Reference</h2>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:var(--text-sm);">
+            <thead>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.1);text-align:left;">
+                <th style="padding:var(--space-3);font-family:var(--font-mono);color:var(--text-muted);">Method</th>
+                <th style="padding:var(--space-3);font-family:var(--font-mono);color:var(--text-muted);">Endpoint</th>
+                <th style="padding:var(--space-3);font-family:var(--font-mono);color:var(--text-muted);">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:var(--space-3);color:#3fb950;font-weight:700;">POST</td>
+                <td style="padding:var(--space-3);font-family:var(--font-mono);">/api/auth/login</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">Authenticate user and set HttpOnly session cookie</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:var(--space-3);color:#58a6ff;font-weight:700;">GET</td>
+                <td style="padding:var(--space-3);font-family:var(--font-mono);">/api/files/list</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">List files &amp; folders in directory with metadata</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:var(--space-3);color:#3fb950;font-weight:700;">POST</td>
+                <td style="padding:var(--space-3);font-family:var(--font-mono);">/api/upload/chunk</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">Upload a 4MB binary slice of a streaming upload</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:var(--space-3);color:#58a6ff;font-weight:700;">GET</td>
+                <td style="padding:var(--space-3);font-family:var(--font-mono);">/api/files/stream</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">HTTP 206 Partial Content byte range media stream</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:var(--space-3);color:#3fb950;font-weight:700;">POST</td>
+                <td style="padding:var(--space-3);font-family:var(--font-mono);">/api/shares/create</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">Create public or password-protected share token</td>
+              </tr>
+              <tr>
+                <td style="padding:var(--space-3);color:#58a6ff;font-weight:700;">GET</td>
+                <td style="padding:var(--space-3);font-family:var(--font-mono);">/api/health</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">Server uptime, memory utilization, and storage status</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <a href="../index.html" class="footer-logo" aria-label="StrangeInfinity home">
+          <img src="../assets/images/logo.png" alt="StrangeInfinity" width="36" height="36" loading="lazy" />
+          <span class="footer-logo-name">StrangeInfinity</span>
+        </a>
+        <p class="footer-tagline">MyDrive — High-Performance, Self-Hosted Private Cloud Storage &amp; Media Streaming.</p>
+        <div class="footer-social">
+          <a href="https://github.com/strangeinfinity/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://x.com/strang3infinity" target="_blank" rel="noopener noreferrer" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://in.linkedin.com/in/ayush-kumar-maurya/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Documentation</p>
+        <nav class="footer-links" aria-label="Documentation links">
+          <a href="#overview">Architecture</a>
+          <a href="#deployment">Linux Setup</a>
+          <a href="#docker">Docker Guide</a>
+          <a href="#termux">Termux Server</a>
+          <a href="#uploads">Chunked Uploads</a>
+          <a href="#security">Security Model</a>
+          <a href="#api">REST API</a>
+        </nav>
+      </div>
+      <div>
+        <p class="footer-col-title">StrangeInfinity Suite</p>
+        <nav class="footer-links" aria-label="Projects navigation">
+          <a href="../store/" style="color:var(--color-primary-light);font-weight:700;"><i class="fa-solid fa-bag-shopping"></i> App Store</a>
+          <a href="../Dedroid/">Dedroid Debian for Android</a>
+          <a href="../MarkView/">MarkView Desktop Reader</a>
+          <a href="../Infinity-Browser/">Infinity Browser</a>
+          <a href="../2048-Nexus/">2048 Nexus</a>
+          <a href="../AirPointer/">AirPointer Virtual Mouse</a>
+          <a href="../Gemini-CLI/">Gemini CLI Chatbot</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 <a href="https://www.strangeinfinity.store/">StrangeInfinity</a>. Open-source &amp; built with <i class="fa-solid fa-heart" style="color:#ef4444"></i> and ∞ curiosity.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Back to Top Button -->
+<button id="back-to-top" aria-label="Scroll back to top" title="Back to top">↑</button>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/particles.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    ThemeManager.init();
+    ParticleEngine.init();
+
+    // Sticky Navbar & BTT
+    const navbar = document.getElementById('navbar');
+    const btt = document.getElementById('back-to-top');
+
+    // ScrollSpy for TOC links & Navbar
+    const sections = document.querySelectorAll('.docs-section');
+    const navLinks = document.querySelectorAll('.docs-nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (navbar) navbar.classList.toggle('scrolled', scrollY > 50);
+      if (btt) btt.classList.toggle('visible', scrollY > 500);
+
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 140;
+        if (scrollY >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }, { passive: true });
+
+    if (btt) {
+      btt.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Mobile Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open', open);
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+  });
+</script>
+</body>
+</html>

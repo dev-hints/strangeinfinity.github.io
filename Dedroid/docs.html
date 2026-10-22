@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCEZHSD62X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RCEZHSD62X');
+  </script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/dedroid.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/dedroid.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/dedroid.png" />
+
+  <!-- Security Headers & Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net data:; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://img.shields.io https://avatars.githubusercontent.com https://github.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Primary Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dedroid Documentation — Architecture, Setup &amp; Developer Guide</title>
+  <meta name="title" content="Dedroid Documentation — Architecture, Setup &amp; Developer Guide" />
+  <meta name="description" content="Official documentation for Dedroid. Installation instructions, PRoot rootless architecture, passwordless sudo bridge, /sdcard integration, keyboard toolbar shortcuts, and build instructions." />
+  <meta name="keywords" content="Dedroid documentation, Dedroid manual, Debian Android guide, PRoot Android setup, apt on Android, rootless Linux workstation" />
+  <meta name="author" content="StrangeInfinity" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.strangeinfinity.store/Dedroid/docs.html" />
+  <meta name="theme-color" content="#d70a53" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.strangeinfinity.store/Dedroid/docs.html" />
+  <meta property="og:site_name" content="Dedroid Docs" />
+  <meta property="og:title" content="Dedroid Documentation — Architecture, Setup &amp; Developer Guide" />
+  <meta property="og:description" content="Technical documentation covering PRoot virtualization, package installation, coding keyboard shortcuts, and storage binding for Dedroid." />
+  <meta property="og:image" content="https://www.strangeinfinity.store/Dedroid/icons/dedroid.png" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@strang3infinity" />
+  <meta name="twitter:title" content="Dedroid Documentation — Architecture, Setup &amp; Developer Guide" />
+  <meta name="twitter:description" content="Technical documentation covering PRoot virtualization, package installation, coding keyboard shortcuts, and storage binding for Dedroid." />
+  <meta name="twitter:image" content="https://www.strangeinfinity.store/Dedroid/icons/dedroid.png" />
+
+  <!-- JSON-LD TechArticle Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Dedroid Documentation — Architecture, Setup & Developer Guide",
+    "description": "Comprehensive technical manual for Dedroid rootless Debian 13 environment on Android.",
+    "url": "https://www.strangeinfinity.store/Dedroid/docs.html",
+    "image": "https://www.strangeinfinity.store/Dedroid/icons/dedroid.png",
+    "about": {
+      "@type": "SoftwareApplication",
+      "name": "Dedroid",
+      "operatingSystem": "Android 8.0+",
+      "downloadUrl": "https://github.com/dev-hints/Dedroid/releases/download/First-Release/dedroid-signed.apk"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "StrangeInfinity",
+      "url": "https://www.strangeinfinity.store/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StrangeInfinity",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.strangeinfinity.store/assets/images/logo.png"
+      }
+    },
+    "datePublished": "2026-10-22T00:00:00+00:00",
+    "dateModified": "2026-10-22T12:00:00+00:00"
+  }
+  </script>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" integrity="sha512-X2hbziex+UPQ+KdI4BWI+39jEDhf2Smc6bfFI/FTIzWnt7mbwZCUU4RWalnMfxtHCpISlexzmd2kvPFJCliiPA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Site Design System CSS -->
+  <link rel="stylesheet" href="../assets/css/variables.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+
+  <!-- Documentation Layout Styles -->
+  <style>
+    .docs-container {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: var(--space-8);
+      padding-top: calc(var(--nav-height) + var(--space-8));
+      padding-bottom: var(--space-20);
+    }
+    @media (max-width: 992px) {
+      .docs-container { grid-template-columns: 1fr; }
+      .docs-sidebar { position: static !important; width: 100% !important; }
+    }
+    .docs-sidebar {
+      position: sticky;
+      top: calc(var(--nav-height) + var(--space-6));
+      height: fit-content;
+      background: var(--bg-card);
+      border: var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .docs-toc-title {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .docs-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .docs-nav-link {
+      display: block;
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: var(--radius-md);
+      transition: var(--transition-fast);
+    }
+    .docs-nav-link:hover, .docs-nav-link.active {
+      color: #fff;
+      background: rgba(215, 10, 83, 0.15);
+      border-left: 2px solid #d70a53;
+    }
+    .docs-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+    .docs-section {
+      background: var(--bg-card);
+      border: var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      scroll-margin-top: calc(var(--nav-height) + var(--space-6));
+    }
+    .docs-section h2 {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      color: var(--text-primary);
+    }
+    .docs-section h3 {
+      font-size: var(--text-lg);
+      margin: var(--space-6) 0 var(--space-3) 0;
+      color: #00f0ff;
+    }
+    .docs-section p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--space-4);
+    }
+    .code-block {
+      background: #090c10;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      margin: var(--space-4) 0;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: #c9d1d9;
+      overflow-x: auto;
+    }
+    .sidebar-apk-btn {
+      width: 100%;
+      justify-content: center;
+      border-color: rgba(215, 10, 83, 0.4);
+      color: #ff007f;
+      transition: var(--transition-normal);
+    }
+    .sidebar-apk-btn:hover {
+      background: linear-gradient(135deg, #d70a53 0%, #ff007f 100%) !important;
+      border-color: transparent !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 15px rgba(215, 10, 83, 0.35);
+    }
+    .sidebar-apk-btn:active {
+      transform: translateY(0);
+    }
+    .sidebar-apk-btn span {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ CANVAS BACKGROUND ═══════════════ -->
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<header role="banner">
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <!-- Logo -->
+      <a href="../index.html" class="nav-logo" aria-label="StrangeInfinity Home">
+        <img src="../assets/images/logo.png" alt="StrangeInfinity" width="38" height="38" loading="lazy" />
+        <span>Strange<span style="color:var(--color-secondary)">Infinity</span></span>
+      </a>
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" role="list">
+        <li><a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left"></i> Dedroid Home</a></li>
+        <li><a href="#overview" class="nav-link active">Overview</a></li>
+        <li><a href="#getting-started" class="nav-link">Setup</a></li>
+        <li><a href="#storage" class="nav-link">Storage</a></li>
+        <li><a href="#sudo" class="nav-link">Sudo</a></li>
+        <li><a href="#building" class="nav-link">Build</a></li>
+      </ul>
+      <!-- Actions -->
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode"><i class="fa-solid fa-moon"></i></button>
+        <a href="https://github.com/dev-hints/Dedroid/releases/download/First-Release/dedroid-signed.apk" download class="btn btn-primary btn-sm"><span><i class="fa-solid fa-download"></i> Download APK</span></a>
+        <button id="hamburger" class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Dedroid Home</a>
+    <a href="#overview" class="nav-link"><i class="fa-solid fa-info-circle"></i> Overview</a>
+    <a href="#getting-started" class="nav-link"><i class="fa-solid fa-play"></i> Getting Started</a>
+    <a href="#keyboard" class="nav-link"><i class="fa-solid fa-keyboard"></i> Coding Toolbar</a>
+    <a href="#storage" class="nav-link"><i class="fa-solid fa-folder"></i> Storage Access</a>
+    <a href="#sudo" class="nav-link"><i class="fa-solid fa-key"></i> Sudo &amp; Packages</a>
+    <a href="#building" class="nav-link"><i class="fa-solid fa-wrench"></i> Building Source</a>
+    <a href="https://github.com/dev-hints/Dedroid/releases/download/First-Release/dedroid-signed.apk" download class="nav-link"><i class="fa-solid fa-download"></i> Download APK</a>
+  </div>
+</header>
+
+<main class="container">
+  <div class="docs-container">
+
+    <!-- Sticky Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="docs-toc-title"><i class="fa-solid fa-book-bookmark"></i> Table of Contents</div>
+      <nav aria-label="Documentation Navigation">
+        <ul class="docs-nav-list">
+          <li><a href="#overview" class="docs-nav-link active">1. Overview &amp; Architecture</a></li>
+          <li><a href="#getting-started" class="docs-nav-link">2. Installation &amp; Setup</a></li>
+          <li><a href="#keyboard" class="docs-nav-link">3. Coding Toolbar Reference</a></li>
+          <li><a href="#storage" class="docs-nav-link">4. Android /sdcard Storage</a></li>
+          <li><a href="#sudo" class="docs-nav-link">5. Passwordless Sudo &amp; PAM</a></li>
+          <li><a href="#packages" class="docs-nav-link">6. Package Management (apt)</a></li>
+          <li><a href="#background" class="docs-nav-link">7. Background Service</a></li>
+          <li><a href="#building" class="docs-nav-link">8. Building from Source</a></li>
+          <li><a href="#troubleshooting" class="docs-nav-link">9. Troubleshooting &amp; FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div style="margin-top:var(--space-6);padding-top:var(--space-4);border-top:var(--glass-border);">
+        <a href="https://github.com/dev-hints/Dedroid/releases/download/First-Release/dedroid-signed.apk" download class="btn btn-outline btn-sm sidebar-apk-btn">
+          <span><i class="fa-solid fa-download"></i> Get Signed APK</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="docs-content">
+
+      <!-- 1. Overview -->
+      <section id="overview" class="docs-section">
+        <h2><i class="fa-brands fa-debian" style="color:#d70a53"></i> 1. Overview &amp; Architecture</h2>
+        <p>
+          <strong>Dedroid</strong> is an open-source terminal application crafted by StrangeInfinity that installs and runs a modern <strong>Debian 13 (Trixie)</strong> rootfs on Android using rootless <strong>PRoot</strong> virtualization.
+        </p>
+        <p>
+          Unlike standard Android chroots or virtual machines that require root access or heavy hardware emulation (QEMU), Dedroid intercepts Linux system calls using <code>ptrace</code> through PRoot. This enables standard Debian ELF binaries to execute directly on the host ARM or x86 processor at native speeds while presenting an isolated Unix root filesystem.
+        </p>
+        <div class="code-block">
+Android Device Userspace
+ ├── Dedroid Terminal Activity (Kotlin + Jetpack)
+ ├── TerminalView &amp; Emulator (libvterm-compatible)
+ ├── TerminalService (Android Foreground Service)
+ └── Native PRoot Bridge (proot-distro runtime)
+       └── Debian 13 (Trixie) Userspace
+             ├── /bin, /usr, /etc, /var
+             ├── apt package manager (dpkg)
+             ├── /sdcard binding (internal storage)
+             └── /etc/sudoers (passwordless bridge)
+        </div>
+      </section>
+
+      <!-- 2. Installation & Setup -->
+      <section id="getting-started" class="docs-section">
+        <h2><i class="fa-solid fa-circle-play" style="color:#3fb950"></i> 2. Installation &amp; Getting Started</h2>
+        <p>
+          Dedroid is distributed as a standalone, self-contained signed APK. It bundles the compressed Debian 13 rootfs and PRoot binaries so you can set up offline without needing initial GitHub or Git access.
+        </p>
+        <h3>Download Link</h3>
+        <p>
+          Download the official package directly:
+          <br />
+          <a href="https://github.com/dev-hints/Dedroid/releases/download/First-Release/dedroid-signed.apk" download class="btn btn-primary btn-sm" style="margin-top:var(--space-2);">
+            <span><i class="fa-solid fa-download"></i> dedroid-signed.apk (First Release)</span>
+          </a>
+        </p>
+
+        <h3>First-Time Setup Wizard</h3>
+        <p>
+          When you launch Dedroid for the first time, the interactive Setup Wizard prompts you for:
+        </p>
+        <ul>
+          <li><strong>Username:</strong> Your desired Linux login name (e.g. <code>ayush</code>, <code>developer</code>).</li>
+          <li><strong>Display Name:</strong> Your full user identity name for Git and system logs.</li>
+          <li><strong>Timezone:</strong> Automatically detected from your phone (e.g. <code>Asia/Kolkata</code>, <code>UTC</code>, <code>America/New_York</code>).</li>
+        </ul>
+        <p>
+          The wizard automatically provisions <code>/etc/passwd</code>, <code>/etc/shadow</code>, <code>/etc/group</code>, and generates your home directory at <code>/home/&lt;username&gt;</code>.
+        </p>
+      </section>
+
+      <!-- 3. Coding Toolbar Reference -->
+      <section id="keyboard" class="docs-section">
+        <h2><i class="fa-solid fa-keyboard" style="color:#ec4899"></i> 3. Coding Toolbar Reference</h2>
+        <p>
+          Typing code on standard soft keyboards can be frustrating because brackets, pipes, and control modifiers are buried behind multiple submenu taps. Dedroid includes a dedicated hardware-style extra keys row:
+        </p>
+        <div class="code-block">
+[ESC] [TAB] [CTRL] [ALT]  {  }  (  )  &lt;  &gt;  ;  |  /  \  #  ~  [↑] [↓] [←] [→]
+        </div>
+        <h3>Toolbar Shortcuts</h3>
+        <ul>
+          <li><strong>CTRL + C:</strong> Sends <code>SIGINT</code> to terminate running processes.</li>
+          <li><strong>CTRL + D:</strong> Sends <code>EOF</code> to exit interactive shells.</li>
+          <li><strong>CTRL + Z:</strong> Sends <code>SIGTSTP</code> to background the foreground task.</li>
+          <li><strong>TAB:</strong> Triggers Bash autocompletion for files, paths, and binaries.</li>
+          <li><strong>&lt;&gt; Button (Top Bar):</strong> Toggles between Full Coding Mode (brackets + pipes) and Compact Navigation Mode (modifier + arrows).</li>
+        </ul>
+      </section>
+
+      <!-- 4. Storage Integration -->
+      <section id="storage" class="docs-section">
+        <h2><i class="fa-solid fa-folder-open" style="color:#f59e0b"></i> 4. Android /sdcard Storage Access</h2>
+        <p>
+          Dedroid bridges Debian directly with your Android device's primary storage:
+        </p>
+        <div class="code-block">
+# Access Android internal shared storage directly:
+cd /sdcard
+
+# Or via your home directory shortcut:
+cd ~/sdcard
+
+# View downloads and document files:
+ls -la /sdcard/Download
+        </div>
+        <p>
+          <strong>Permission Check:</strong> If storage is blocked, tap the folder icon on the top action bar to prompt Android's runtime storage permissions dialog.
+        </p>
+      </section>
+
+      <!-- 5. Sudo & PAM -->
+      <section id="sudo" class="docs-section">
+        <h2><i class="fa-solid fa-key" style="color:#00f0ff"></i> 5. Passwordless Sudo &amp; PAM Bridge</h2>
+        <p>
+          Dedroid provides full administrative capability without requiring device root:
+        </p>
+        <div class="code-block">
+# Run administrative commands with sudo without typing passwords:
+sudo apt update
+sudo apt upgrade -y
+sudo apt install build-essential git python3
+        </div>
+        <p>
+          The custom PAM bridge configures <code>/etc/sudoers.d/010_dedroid-nopasswd</code> granting <code>ALL=(ALL) NOPASSWD: ALL</code> to your user account while remaining contained inside the PRoot sandbox.
+        </p>
+      </section>
+
+      <!-- 6. Packages -->
+      <section id="packages" class="docs-section">
+        <h2><i class="fa-solid fa-box" style="color:#3fb950"></i> 6. Package Management with APT</h2>
+        <p>
+          Because Dedroid is genuine Debian 13 (Trixie), you have access to the entire Debian package ecosystem:
+        </p>
+        <div class="code-block">
+# Install developer compilers &amp; languages:
+sudo apt install -y gcc g++ clang make cmake rustc cargo golang nodejs npm
+
+# Install text editors &amp; productivity tools:
+sudo apt install -y neovim tmux htop zsh curl wget ripgrep jq
+
+# Test Python virtual environment:
+sudo apt install -y python3-full python3-pip python3-venv
+python3 -m venv test-env
+source test-env/bin/activate
+        </div>
+      </section>
+
+      <!-- 7. Background Service -->
+      <section id="background" class="docs-section">
+        <h2><i class="fa-solid fa-bell" style="color:#a855f7"></i> 7. Background Execution &amp; Notification</h2>
+        <p>
+          Android aggressively terminates background tasks unless an active foreground service is bound. Dedroid maintains a persistent <code>TerminalService</code> notification with:
+        </p>
+        <ul>
+          <li>Active session counter (e.g. <code>2 sessions active</code>)</li>
+          <li>Quick re-open intent on notification click</li>
+          <li>One-tap "Close Session" button in notification actions to cleanly terminate background jobs</li>
+        </ul>
+      </section>
+
+      <!-- 8. Building from Source -->
+      <section id="building" class="docs-section">
+        <h2><i class="fa-solid fa-code" style="color:#d70a53"></i> 8. Building Dedroid from Source</h2>
+        <p>
+          You can compile Dedroid from source using Android Studio or the command line Gradle wrapper:
+        </p>
+        <div class="code-block">
+# 1. Clone the repository:
+git clone https://github.com/dev-hints/Dedroid.git
+cd Dedroid
+
+# 2. Build Debug APK:
+./gradlew assembleDebug
+
+# 3. Locate compiled APK:
+ls app/build/outputs/apk/debug/app-debug.apk
+        </div>
+      </section>
+
+      <!-- 9. Troubleshooting -->
+      <section id="troubleshooting" class="docs-section">
+        <h2><i class="fa-solid fa-circle-question" style="color:#00f0ff"></i> 9. Troubleshooting &amp; FAQ</h2>
+        <h3>Permission Denied on /sdcard</h3>
+        <p>
+          Android 11+ enforces Scoped Storage. Tap the folder icon in the top toolbar to grant "All files access" (<code>MANAGE_EXTERNAL_STORAGE</code>) to Dedroid.
+        </p>
+        <h3>Process terminated with Signal 9</h3>
+        <p>
+          On aggressive Android ROMs (MIUI, ColorOS, OneUI), the OEM "phantom process killer" may terminate memory-intensive builds. Disable battery optimization for Dedroid in Android System Settings &gt; Apps &gt; Dedroid &gt; Battery &gt; Unrestricted.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <a href="../index.html" class="footer-logo" aria-label="StrangeInfinity home">
+          <img src="../assets/images/logo.png" alt="StrangeInfinity" width="36" height="36" loading="lazy" />
+          <span class="footer-logo-name">StrangeInfinity</span>
+        </a>
+        <p class="footer-tagline">Dedroid — Debian GNU/Linux 13 (Trixie) rootless workstation in your pocket.</p>
+        <div class="footer-social">
+          <a href="https://github.com/strangeinfinity/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://x.com/strang3infinity" target="_blank" rel="noopener noreferrer" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://in.linkedin.com/in/ayush-kumar-maurya/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Documentation</p>
+        <nav class="footer-links" aria-label="Documentation links">
+          <a href="#overview">Overview</a>
+          <a href="#getting-started">Installation</a>
+          <a href="#keyboard">Coding Toolbar</a>
+          <a href="#storage">Storage</a>
+          <a href="#sudo">Sudo &amp; PAM</a>
+          <a href="#building">Build Source</a>
+        </nav>
+      </div>
+      <div>
+        <p class="footer-col-title">StrangeInfinity Suite</p>
+        <nav class="footer-links" aria-label="Projects navigation">
+          <a href="../store/" style="color:var(--color-primary-light);font-weight:700;"><i class="fa-solid fa-bag-shopping"></i> App Store</a>
+          <a href="../MarkView/">MarkView Desktop Reader</a>
+          <a href="../MyDrive/">MyDrive Cloud Storage</a>
+          <a href="../Infinity-Browser/">Infinity Browser</a>
+          <a href="../2048-Nexus/">2048 Nexus</a>
+          <a href="../AirPointer/">AirPointer Virtual Mouse</a>
+          <a href="../Gemini-CLI/">Gemini CLI Chatbot</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 <a href="https://www.strangeinfinity.store/">StrangeInfinity</a>. Open-source &amp; built with <i class="fa-solid fa-heart" style="color:#ef4444"></i> and ∞ curiosity.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Back to Top Button -->
+<button id="back-to-top" aria-label="Scroll back to top" title="Back to top">↑</button>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/particles.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    ThemeManager.init();
+    ParticleEngine.init();
+
+    // Sticky Navbar & BTT
+    const navbar = document.getElementById('navbar');
+    const btt = document.getElementById('back-to-top');
+
+    // ScrollSpy for TOC links & Navbar
+    const sections = document.querySelectorAll('.docs-section');
+    const navLinks = document.querySelectorAll('.docs-nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (navbar) navbar.classList.toggle('scrolled', scrollY > 50);
+      if (btt) btt.classList.toggle('visible', scrollY > 500);
+
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 140;
+        if (scrollY >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }, { passive: true });
+
+    if (btt) {
+      btt.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Mobile Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open', open);
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+  });
+</script>
+</body>
+</html>

@@ -24,8 +24,10 @@ const ThemeManager = (() => {
     // Update toggle button icon
     const btn = document.getElementById('theme-toggle');
     if (btn) {
-      btn.setAttribute('aria-label', `Switch to ${theme === DARK ? LIGHT : DARK} mode`);
-      btn.innerHTML = theme === DARK ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+      const nextTheme = theme === DARK ? LIGHT : DARK;
+      btn.setAttribute('aria-label', `Switch to ${nextTheme} mode`);
+      btn.setAttribute('title', `Switch to ${nextTheme} mode`);
+      btn.innerHTML = theme === DARK ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     }
 
     // Update theme widget
@@ -49,19 +51,30 @@ const ThemeManager = (() => {
     if (saved === DARK || saved === LIGHT) {
       applyTheme(saved);
     } else {
-      applyTheme(LIGHT);
+      const docTheme = document.documentElement ? document.documentElement.getAttribute('data-theme') : null;
+      if (docTheme === DARK || docTheme === LIGHT) {
+        applyTheme(docTheme);
+      } else {
+        applyTheme(LIGHT);
+      }
     }
 
-    // Wire up toggle button
+    // Wire up toggle button (idempotent)
     const btn = document.getElementById('theme-toggle');
-    if (btn) btn.addEventListener('click', toggle);
+    if (btn && !btn.dataset.themeBound) {
+      btn.dataset.themeBound = 'true';
+      btn.addEventListener('click', toggle);
+    }
 
     // Listen for OS preference changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      if (!localStorage.getItem(STORAGE_KEY)) {
-        applyTheme(e.matches ? DARK : LIGHT);
-      }
-    });
+    if (!window._themeMediaBound) {
+      window._themeMediaBound = true;
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem(STORAGE_KEY)) {
+          applyTheme(e.matches ? DARK : LIGHT);
+        }
+      });
+    }
 
     // Also initialize copy buttons across page
     if (typeof CopyCodeManager !== 'undefined' && CopyCodeManager.init) {
@@ -316,4 +329,14 @@ const CopyCodeManager = (() => {
 // Expose globally
 window.ThemeManager = ThemeManager;
 window.CopyCodeManager = CopyCodeManager;
+
+// Auto-initialize ThemeManager on DOM ready
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => ThemeManager.init());
+  } else {
+    ThemeManager.init();
+  }
+}
+
 

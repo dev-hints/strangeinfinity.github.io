@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCEZHSD62X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RCEZHSD62X');
+  </script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/markview.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/markview.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/markview.png" />
+
+  <!-- Security Headers & Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net data:; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://img.shields.io https://avatars.githubusercontent.com https://github.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Primary Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarkView Documentation — Architecture, Installation &amp; Keyboard Shortcuts</title>
+  <meta name="title" content="MarkView Documentation — Architecture, Installation &amp; Keyboard Shortcuts" />
+  <meta name="description" content="Official technical documentation for MarkView. Installation instructions for AppImage, DEB, and RPM, Tauri 2 architecture, Shiki syntax highlighting, KaTeX math formulas, and keyboard shortcuts." />
+  <meta name="keywords" content="MarkView documentation, MarkView manual, Tauri 2 markdown docs, Shiki themes, KaTeX markdown, AppImage install, Debian markdown, StrangeInfinity" />
+  <meta name="author" content="StrangeInfinity" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.strangeinfinity.store/MarkView/docs.html" />
+  <meta name="theme-color" content="#0ea5e9" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.strangeinfinity.store/MarkView/docs.html" />
+  <meta property="og:site_name" content="MarkView Docs" />
+  <meta property="og:title" content="MarkView Documentation — Architecture &amp; User Manual" />
+  <meta property="og:description" content="Complete documentation, installation guide, keyboard shortcuts, and syntax reference for MarkView." />
+  <meta property="og:image" content="https://www.strangeinfinity.store/MarkView/icons/markview.png" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@strang3infinity" />
+  <meta name="twitter:title" content="MarkView Documentation — Architecture &amp; User Manual" />
+  <meta name="twitter:description" content="Complete documentation, installation guide, keyboard shortcuts, and syntax reference for MarkView." />
+  <meta name="twitter:image" content="https://www.strangeinfinity.store/MarkView/icons/markview.png" />
+
+  <!-- JSON-LD TechArticle Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "MarkView Documentation — Architecture, Installation & User Manual",
+    "description": "Comprehensive technical manual for MarkView desktop Markdown application.",
+    "url": "https://www.strangeinfinity.store/MarkView/docs.html",
+    "image": "https://www.strangeinfinity.store/MarkView/icons/markview.png",
+    "about": {
+      "@type": "SoftwareApplication",
+      "name": "MarkView",
+      "operatingSystem": "Linux, macOS, Windows",
+      "downloadUrl": "https://github.com/dev-hints/MarkView/releases/tag/new"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "StrangeInfinity",
+      "url": "https://www.strangeinfinity.store/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "StrangeInfinity",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.strangeinfinity.store/assets/images/logo.png"
+      }
+    },
+    "datePublished": "2026-10-22T00:00:00+00:00",
+    "dateModified": "2026-10-22T12:00:00+00:00"
+  }
+  </script>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" integrity="sha512-X2hbziex+UPQ+KdI4BWI+39jEDhf2Smc6bfFI/FTIzWnt7mbwZCUU4RWalnMfxtHCpISlexzmd2kvPFJCliiPA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Site Design System CSS -->
+  <link rel="stylesheet" href="../assets/css/variables.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+
+  <!-- Documentation Layout Styles -->
+  <style>
+    .docs-container {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: var(--space-8);
+      padding-top: calc(var(--nav-height) + var(--space-8));
+      padding-bottom: var(--space-20);
+    }
+    @media (max-width: 992px) {
+      .docs-container { grid-template-columns: 1fr; }
+      .docs-sidebar { position: static !important; width: 100% !important; }
+    }
+    .docs-sidebar {
+      position: sticky;
+      top: calc(var(--nav-height) + var(--space-6));
+      height: fit-content;
+      background: var(--bg-card);
+      border: var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .docs-toc-title {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .docs-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .docs-nav-link {
+      display: block;
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: var(--radius-md);
+      transition: var(--transition-fast);
+    }
+    .docs-nav-link:hover, .docs-nav-link.active {
+      color: #fff;
+      background: rgba(14, 165, 233, 0.15);
+      border-left: 2px solid #0ea5e9;
+    }
+    .docs-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+    .docs-section {
+      background: var(--bg-card);
+      border: var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      scroll-margin-top: calc(var(--nav-height) + var(--space-6));
+    }
+    .docs-section h2 {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      color: var(--text-primary);
+    }
+    .docs-section h3 {
+      font-size: var(--text-lg);
+      margin: var(--space-6) 0 var(--space-3) 0;
+      color: #38bdf8;
+    }
+    .docs-section p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--space-4);
+    }
+    .code-block {
+      background: #090d16;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      margin: var(--space-4) 0;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: #93c5fd;
+      overflow-x: auto;
+    }
+    .sidebar-download-btn {
+      width: 100%;
+      justify-content: center;
+      border-color: rgba(14, 165, 233, 0.4);
+      color: #0ea5e9;
+      transition: var(--transition-normal);
+    }
+    .sidebar-download-btn:hover {
+      background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%) !important;
+      border-color: transparent !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);
+    }
+    .sidebar-download-btn:active {
+      transform: translateY(0);
+    }
+    .sidebar-download-btn span {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ CANVAS BACKGROUND ═══════════════ -->
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<header role="banner">
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <!-- Logo -->
+      <a href="../index.html" class="nav-logo" aria-label="StrangeInfinity Home">
+        <img src="../assets/images/logo.png" alt="StrangeInfinity" width="38" height="38" loading="lazy" />
+        <span>Strange<span style="color:var(--color-secondary)">Infinity</span></span>
+      </a>
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" role="list">
+        <li><a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left"></i> MarkView Home</a></li>
+        <li><a href="#overview" class="nav-link active">Overview</a></li>
+        <li><a href="#installation" class="nav-link">Installation</a></li>
+        <li><a href="#shortcuts" class="nav-link">Shortcuts</a></li>
+        <li><a href="#syntax" class="nav-link">Syntax &amp; Math</a></li>
+        <li><a href="#security" class="nav-link">Security</a></li>
+      </ul>
+      <!-- Actions -->
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode"><i class="fa-solid fa-moon"></i></button>
+        <a href="index.html#download" class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i> Downloads</a>
+        <button id="hamburger" class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> MarkView Home</a>
+    <a href="#overview" class="nav-link"><i class="fa-solid fa-info-circle"></i> Overview</a>
+    <a href="#installation" class="nav-link"><i class="fa-solid fa-download"></i> Installation</a>
+    <a href="#shortcuts" class="nav-link"><i class="fa-solid fa-keyboard"></i> Shortcuts</a>
+    <a href="#syntax" class="nav-link"><i class="fa-solid fa-code"></i> Syntax &amp; Math</a>
+    <a href="#workspace" class="nav-link"><i class="fa-solid fa-folder"></i> Workspace Watcher</a>
+    <a href="#security" class="nav-link"><i class="fa-solid fa-shield"></i> Security Model</a>
+  </div>
+</header>
+
+<main class="container">
+  <div class="docs-container">
+
+    <!-- Sticky Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="docs-toc-title"><i class="fa-solid fa-book-bookmark"></i> Table of Contents</div>
+      <nav aria-label="Documentation Navigation">
+        <ul class="docs-nav-list">
+          <li><a href="#overview" class="docs-nav-link active">1. Overview &amp; Architecture</a></li>
+          <li><a href="#installation" class="docs-nav-link">2. Installation &amp; Packages</a></li>
+          <li><a href="#shortcuts" class="docs-nav-link">3. Keyboard Shortcuts</a></li>
+          <li><a href="#syntax" class="docs-nav-link">4. Syntax, KaTeX &amp; Diagrams</a></li>
+          <li><a href="#workspace" class="docs-nav-link">5. Workspace &amp; File Watcher</a></li>
+          <li><a href="#search" class="docs-nav-link">6. Search Engine</a></li>
+          <li><a href="#security" class="docs-nav-link">7. Security &amp; Sandboxing</a></li>
+          <li><a href="#building" class="docs-nav-link">8. Building from Source</a></li>
+        </ul>
+      </nav>
+
+      <div style="margin-top:var(--space-6);padding-top:var(--space-4);border-top:var(--glass-border);">
+        <a href="index.html#download" class="btn btn-outline btn-sm sidebar-download-btn">
+          <span><i class="fa-solid fa-download"></i> Download Packages</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="docs-content">
+
+      <!-- 1. Overview -->
+      <section id="overview" class="docs-section">
+        <h2><i class="fa-solid fa-layer-group" style="color:#0ea5e9"></i> 1. Overview &amp; Architecture</h2>
+        <p>
+          <strong>MarkView</strong> is a modern, high-performance desktop Markdown application engineered with <strong>Tauri 2</strong>, <strong>Rust</strong>, <strong>React 19</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS 4</strong>.
+        </p>
+        <p>
+          Unlike heavy Chromium-based Electron applications that consume hundreds of megabytes of RAM, MarkView uses the operating system's native webview (WebKitGTK on Linux, WebView2 on Windows, WKWebView on macOS) coupled with a multi-threaded Rust backend for directory traversals, regex searches, and file watching.
+        </p>
+        <div class="code-block">
+Technology Stack:
+• Desktop Framework: Tauri 2.x
+• Backend Core: Rust (std::fs, walkdir, regex, notify)
+• Frontend Framework: React 19 + TypeScript
+• Styling &amp; Design: Tailwind CSS 4
+• Code Highlighting: Shiki (25+ VS Code languages &amp; themes)
+• Math &amp; Equations: KaTeX (inline $...$ and block $$...$$)
+• Diagram Pipeline: Mermaid (flowchart, sequence, class, state)
+• Sanitization: rehype-sanitize whitelist schema
+        </div>
+      </section>
+
+      <!-- 2. Installation -->
+      <section id="installation" class="docs-section">
+        <h2><i class="fa-solid fa-download" style="color:#38bdf8"></i> 2. Installation &amp; Packages</h2>
+        <p>
+          Standalone binaries are published for Linux. Download your target package:
+        </p>
+        <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;margin-bottom:var(--space-4);">
+          <a href="https://github.com/dev-hints/MarkView/releases/download/new/MarkView-1.0.0-x86_64.AppImage" download class="btn btn-primary btn-sm">
+            <span><i class="fa-solid fa-download"></i> AppImage (x86_64)</span>
+          </a>
+          <a href="https://github.com/dev-hints/MarkView/releases/download/new/MarkView_1.0.0_amd64.deb" download class="btn btn-outline btn-sm">
+            <span><i class="fa-solid fa-box"></i> DEB (amd64)</span>
+          </a>
+          <a href="https://github.com/dev-hints/MarkView/releases/download/new/MarkView_1.0.0_arm64.deb" download class="btn btn-outline btn-sm">
+            <span><i class="fa-solid fa-box"></i> DEB (arm64)</span>
+          </a>
+          <a href="https://github.com/dev-hints/MarkView/releases/download/new/MarkView-1.0.0-x86_64.rpm" download class="btn btn-outline btn-sm">
+            <span><i class="fa-solid fa-box"></i> RPM (x86_64)</span>
+          </a>
+        </div>
+
+        <h3>Linux Command Line Installation</h3>
+        <div class="code-block">
+# 1. Run AppImage:
+chmod +x MarkView-1.0.0-x86_64.AppImage
+./MarkView-1.0.0-x86_64.AppImage
+
+# 2. Install on Debian / Ubuntu / Linux Mint:
+sudo dpkg -i MarkView_1.0.0_amd64.deb
+
+# 3. Install on Fedora / RHEL / CentOS:
+sudo rpm -i MarkView-1.0.0-x86_64.rpm
+        </div>
+      </section>
+
+      <!-- 3. Shortcuts -->
+      <section id="shortcuts" class="docs-section">
+        <h2><i class="fa-solid fa-keyboard" style="color:#f59e0b"></i> 3. Keyboard Shortcuts</h2>
+        <p>MarkView includes full keyboard navigation for mouse-free document exploration:</p>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:var(--text-sm);">
+            <thead>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.1);text-align:left;">
+                <th style="padding:var(--space-3);color:var(--text-muted);font-family:var(--font-mono);">Shortcut</th>
+                <th style="padding:var(--space-3);color:var(--text-muted);font-family:var(--font-mono);">Action</th>
+                <th style="padding:var(--space-3);color:var(--text-muted);font-family:var(--font-mono);">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:var(--space-3);"><kbd>Ctrl</kbd> + <kbd>P</kbd></td>
+                <td style="padding:var(--space-3);font-weight:600;color:#38bdf8;">Quick Open</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">Fuzzy search and instantly switch files in workspace</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:var(--space-3);"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd></td>
+                <td style="padding:var(--space-3);font-weight:600;color:#38bdf8;">Workspace Search</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">Full regex content search across all workspace files</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:var(--space-3);"><kbd>Ctrl</kbd> + <kbd>F</kbd></td>
+                <td style="padding:var(--space-3);font-weight:600;color:#38bdf8;">In-Document Search</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">Highlight matches in active document with Enter / Shift+Enter</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:var(--space-3);"><kbd>Ctrl</kbd> + <kbd>[</kbd> / <kbd>]</kbd></td>
+                <td style="padding:var(--space-3);font-weight:600;color:#38bdf8;">Back / Forward</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">History stack navigation between visited markdown files</td>
+              </tr>
+              <tr>
+                <td style="padding:var(--space-3);"><kbd>Ctrl</kbd> + <kbd>O</kbd></td>
+                <td style="padding:var(--space-3);font-weight:600;color:#38bdf8;">Open File/Folder</td>
+                <td style="padding:var(--space-3);color:var(--text-secondary);">Launch system native file chooser dialog</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. Syntax & Math -->
+      <section id="syntax" class="docs-section">
+        <h2><i class="fa-solid fa-code" style="color:#10b981"></i> 4. Syntax, KaTeX &amp; Diagrams</h2>
+        <h3>Code Blocks with Shiki</h3>
+        <p>
+          MarkView uses Shiki for accurate syntax highlighting. Theme choices include GitHub Dark, GitHub Light, One Dark Pro, Nord, Dracula, and Vitesse.
+        </p>
+        <div class="code-block">
+```rust
+fn main() {
+    println!("Hello from MarkView!");
+}
+```
+        </div>
+
+        <h3>Mathematical Formulas with KaTeX</h3>
+        <p>Write inline formulas with <code>$E = mc^2$</code> or display blocks:</p>
+        <div class="code-block">
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+        </div>
+
+        <h3>Mermaid Diagrams</h3>
+        <p>MarkView natively renders Mermaid diagrams:</p>
+        <div class="code-block">
+```mermaid
+graph TD
+    A[Markdown File] --> B[Rust AST Parser]
+    B --> C[React 19 Renderer]
+    C --> D[Shiki &amp; KaTeX]
+```
+        </div>
+      </section>
+
+      <!-- 5. Workspace -->
+      <section id="workspace" class="docs-section">
+        <h2><i class="fa-solid fa-folder-tree" style="color:#8b5cf6"></i> 5. Workspace &amp; File Watcher</h2>
+        <p>
+          When you open a workspace directory, MarkView launches a debounced filesystem watcher using Rust's <code>notify</code> crate.
+        </p>
+        <ul>
+          <li><strong>External Edits:</strong> Edits made in external IDEs (VS Code, Neovim) are instantly detected and updated in MarkView without re-rendering flashes.</li>
+          <li><strong>Scroll Preservation:</strong> Your scroll offset is automatically retained when documents re-render.</li>
+          <li><strong>Relative Links:</strong> Clicking markdown links like <code>[Setup](./setup.md)</code> instantly navigates to that file in the workspace.</li>
+          <li><strong>Local Images:</strong> Relative image paths (<code>![Image](./assets/diagram.png)</code>) are securely resolved through Tauri's local streaming protocol.</li>
+        </ul>
+      </section>
+
+      <!-- 6. Search -->
+      <section id="search" class="docs-section">
+        <h2><i class="fa-solid fa-magnifying-glass" style="color:#ec4899"></i> 6. Lightning-Fast Search Engine</h2>
+        <p>MarkView incorporates three distinct search tiers:</p>
+        <ol>
+          <li><strong>Quick Open (<kbd>Ctrl+P</kbd>):</strong> Fuzzy file finder scanning all filenames in memory.</li>
+          <li><strong>Workspace Content Search (<kbd>Ctrl+Shift+F</kbd>):</strong> Rust multi-threaded regex engine traversing file contents in parallel.</li>
+          <li><strong>In-Document Search (<kbd>Ctrl+F</kbd>):</strong> DOM highlight engine with match count indices.</li>
+        </ol>
+      </section>
+
+      <!-- 7. Security -->
+      <section id="security" class="docs-section">
+        <h2><i class="fa-solid fa-shield-halved" style="color:#3b82f6"></i> 7. Security &amp; Sandboxing</h2>
+        <p>
+          Security is central to MarkView's design:
+        </p>
+        <ul>
+          <li><strong>AST HTML Sanitization:</strong> Raw HTML is strictly sanitized using <code>rehype-sanitize</code>, preventing XSS injection attacks.</li>
+          <li><strong>External Links:</strong> Web URLs (<code>https://...</code>) never open in the local webview; they are delegated to your default OS browser via Tauri's Opener plugin.</li>
+          <li><strong>100% Offline:</strong> No telemetry, analytics, or remote API calls are executed. All engines run entirely locally.</li>
+        </ul>
+      </section>
+
+      <!-- 8. Building from Source -->
+      <section id="building" class="docs-section">
+        <h2><i class="fa-solid fa-wrench" style="color:#0ea5e9"></i> 8. Building from Source</h2>
+        <p>To compile MarkView from source:</p>
+        <div class="code-block">
+# 1. Clone repository:
+git clone https://github.com/dev-hints/MarkView.git
+cd MarkView
+
+# 2. Install dependencies:
+npm install
+
+# 3. Run in development mode:
+npm run tauri dev
+
+# 4. Build release binaries:
+npm run tauri build
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <a href="../index.html" class="footer-logo" aria-label="StrangeInfinity home">
+          <img src="../assets/images/logo.png" alt="StrangeInfinity" width="36" height="36" loading="lazy" />
+          <span class="footer-logo-name">StrangeInfinity</span>
+        </a>
+        <p class="footer-tagline">MarkView — Modern cross-platform desktop Markdown application in Tauri 2, Rust &amp; React 19.</p>
+        <div class="footer-social">
+          <a href="https://github.com/strangeinfinity/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://x.com/strang3infinity" target="_blank" rel="noopener noreferrer" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://in.linkedin.com/in/ayush-kumar-maurya/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Documentation</p>
+        <nav class="footer-links" aria-label="Documentation links">
+          <a href="#overview">Overview</a>
+          <a href="#installation">Installation</a>
+          <a href="#shortcuts">Shortcuts</a>
+          <a href="#syntax">Syntax &amp; Math</a>
+          <a href="#workspace">Workspace</a>
+          <a href="#security">Security</a>
+        </nav>
+      </div>
+      <div>
+        <p class="footer-col-title">StrangeInfinity Suite</p>
+        <nav class="footer-links" aria-label="Projects navigation">
+          <a href="../store/" style="color:var(--color-primary-light);font-weight:700;"><i class="fa-solid fa-bag-shopping"></i> App Store</a>
+          <a href="../Dedroid/">Dedroid Debian for Android</a>
+          <a href="../MyDrive/">MyDrive Cloud Storage</a>
+          <a href="../Infinity-Browser/">Infinity Browser</a>
+          <a href="../2048-Nexus/">2048 Nexus</a>
+          <a href="../AirPointer/">AirPointer Virtual Mouse</a>
+          <a href="../Gemini-CLI/">Gemini CLI Chatbot</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 <a href="https://www.strangeinfinity.store/">StrangeInfinity</a>. Open-source &amp; built with <i class="fa-solid fa-heart" style="color:#ef4444"></i> and ∞ curiosity.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Back to Top Button -->
+<button id="back-to-top" aria-label="Scroll back to top" title="Back to top">↑</button>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/particles.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    ThemeManager.init();
+    ParticleEngine.init();
+
+    // Sticky Navbar & BTT
+    const navbar = document.getElementById('navbar');
+    const btt = document.getElementById('back-to-top');
+
+    // ScrollSpy for TOC links & Navbar
+    const sections = document.querySelectorAll('.docs-section');
+    const navLinks = document.querySelectorAll('.docs-nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (navbar) navbar.classList.toggle('scrolled', scrollY > 50);
+      if (btt) btt.classList.toggle('visible', scrollY > 500);
+
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 140;
+        if (scrollY >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }, { passive: true });
+
+    if (btt) {
+      btt.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Mobile Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open', open);
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+  });
+</script>
+</body>
+</html>

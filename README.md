@@ -7,6 +7,7 @@
   **Open-Source Software, Desktop Applications & Digital Innovations**
 
   [![Website](https://img.shields.io/badge/Website-strangeinfinity.store-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.strangeinfinity.store/)
+  [![App Store](https://img.shields.io/badge/App_Store-Browse_Downloads-10b981?style=for-the-badge&logo=googleplay&logoColor=white)](https://www.strangeinfinity.store/store/)
   [![GitHub Organization](https://img.shields.io/badge/GitHub-strangeinfinity-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/strangeinfinity/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-06b6d4?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
@@ -16,7 +17,7 @@
 
   ---
 
-  [**Explore the Website**](https://www.strangeinfinity.store/) • [**Featured Products**](#-featured-products) • [**Core Mission**](#-mission--purpose) • [**Ecosystem**](#-project-ecosystem) • [**Connect**](#-connect--community)
+  [**Explore the Website**](https://www.strangeinfinity.store/) • [**App Store (Downloads)**](https://www.strangeinfinity.store/store/) • [**Featured Products**](#-featured-products) • [**Core Mission**](#-mission--purpose) • [**Ecosystem**](#-project-ecosystem) • [**Connect**](#-connect--community)
 
 </div>
 
@@ -129,6 +130,38 @@ The StrangeInfinity portal highlights several flagship software products and ope
   </tr>
   <tr>
     <td width="50%" valign="top">
+      <h3>🤖 Dedroid (Debian on Android)</h3>
+      <p>Debian GNU/Linux 13 (Trixie) rootless terminal workstation for Android with PRoot virtualization, passwordless sudo, SD card storage bridge, and developer keyboard toolbar.</p>
+      <p>
+        <a href="https://www.strangeinfinity.store/Dedroid/"><strong>Portal »</strong></a> • 
+        <a href="https://www.strangeinfinity.store/Dedroid/docs.html"><strong>Docs »</strong></a> • 
+        <a href="https://github.com/dev-hints/Dedroid/releases/download/First-Release/dedroid-signed.apk"><strong>Download APK »</strong></a> • 
+        <a href="https://github.com/dev-hints/Dedroid">GitHub</a>
+      </p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>📑 MarkView Desktop Reader</h3>
+      <p>High-performance desktop Markdown application in Tauri 2, Rust & React 19. Features Shiki syntax highlighting, KaTeX math, Mermaid diagrams, and real-time filesystem watcher.</p>
+      <p>
+        <a href="https://www.strangeinfinity.store/MarkView/"><strong>Portal »</strong></a> • 
+        <a href="https://www.strangeinfinity.store/MarkView/docs.html"><strong>Docs »</strong></a> • 
+        <a href="https://github.com/dev-hints/MarkView/releases"><strong>Releases »</strong></a> • 
+        <a href="https://github.com/dev-hints/MarkView">GitHub</a>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>☁️ MyDrive Cloud Storage</h3>
+      <p>High-performance, self-hosted private cloud storage and media streaming server. Resumable 4MB chunked uploads, HTTP 206 video streaming, contacts sync, and 100% data privacy.</p>
+      <p>
+        <a href="https://www.strangeinfinity.store/MyDrive/"><strong>Portal »</strong></a> • 
+        <a href="https://www.strangeinfinity.store/MyDrive/docs.html"><strong>Docs »</strong></a> • 
+        <a href="https://github.com/dev-hints/mydrive/archive/refs/heads/main.zip"><strong>Download »</strong></a> • 
+        <a href="https://github.com/dev-hints/mydrive">GitHub</a>
+      </p>
+    </td>
+    <td width="50%" valign="top">
       <h3>✅ ToDo Task Manager</h3>
       <p>Distraction-free personal task management and Pomodoro workstation built with cosmic glassmorphism and 100% local persistence.</p>
       <p>
@@ -136,8 +169,6 @@ The StrangeInfinity portal highlights several flagship software products and ope
         <a href="https://www.strangeinfinity.store/To-Do/docs.html"><strong>Docs »</strong></a> • 
         <a href="https://github.com/dev-hints/To-Do">GitHub</a>
       </p>
-    </td>
-    <td width="50%" valign="top">
     </td>
   </tr>
 </table>

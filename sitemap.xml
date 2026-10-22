@@ -275,4 +275,103 @@
     </image:image>
   </url>
 
+  <!-- 11. Dedroid -->
+  <url>
+    <loc>https://www.strangeinfinity.store/Dedroid/</loc>
+    <lastmod>2026-10-22T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.strangeinfinity.store/Dedroid/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.strangeinfinity.store/Dedroid/" />
+    <image:image>
+      <image:loc>https://www.strangeinfinity.store/Dedroid/icons/dedroid.png</image:loc>
+      <image:title>Dedroid — Debian GNU/Linux 13 (Trixie) Terminal on Android</image:title>
+      <image:caption>Rootless Debian 13 terminal environment for Android powered by PRoot, passwordless sudo, and extra-keys toolbar.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.strangeinfinity.store/Dedroid/docs.html</loc>
+    <lastmod>2026-10-22T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.strangeinfinity.store/Dedroid/docs.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.strangeinfinity.store/Dedroid/docs.html" />
+    <image:image>
+      <image:loc>https://www.strangeinfinity.store/Dedroid/icons/dedroid.png</image:loc>
+      <image:title>Dedroid Technical Documentation &amp; User Manual</image:title>
+      <image:caption>Installation, PRoot virtualization architecture, /sdcard storage setup, and developer toolbar reference.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 12. MarkView -->
+  <url>
+    <loc>https://www.strangeinfinity.store/MarkView/</loc>
+    <lastmod>2026-10-22T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.strangeinfinity.store/MarkView/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.strangeinfinity.store/MarkView/" />
+    <image:image>
+      <image:loc>https://www.strangeinfinity.store/MarkView/icons/markview.png</image:loc>
+      <image:title>MarkView — High-Performance Desktop Markdown Reader</image:title>
+      <image:caption>Tauri 2, Rust &amp; React 19 desktop markdown application with Shiki code highlighting, KaTeX math, and Mermaid diagrams.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.strangeinfinity.store/MarkView/docs.html</loc>
+    <lastmod>2026-10-22T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.strangeinfinity.store/MarkView/docs.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.strangeinfinity.store/MarkView/docs.html" />
+    <image:image>
+      <image:loc>https://www.strangeinfinity.store/MarkView/icons/markview.png</image:loc>
+      <image:title>MarkView Technical Documentation &amp; Architecture</image:title>
+      <image:caption>Installation guide for AppImage, DEB, and RPM packages, keyboard shortcuts, and syntax specifications.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 13. MyDrive -->
+  <url>
+    <loc>https://www.strangeinfinity.store/MyDrive/</loc>
+    <lastmod>2026-10-22T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.strangeinfinity.store/MyDrive/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.strangeinfinity.store/MyDrive/" />
+    <image:image>
+      <image:loc>https://www.strangeinfinity.store/MyDrive/icons/mydrive.png</image:loc>
+      <image:title>MyDrive — Self-Hosted Private Cloud Storage &amp; Media Streaming</image:title>
+      <image:caption>FastAPI and SQLite self-hosted private cloud drive with 4MB chunked streaming uploads and contacts sync.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.strangeinfinity.store/MyDrive/docs.html</loc>
+    <lastmod>2026-10-22T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.strangeinfinity.store/MyDrive/docs.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.strangeinfinity.store/MyDrive/docs.html" />
+    <image:image>
+      <image:loc>https://www.strangeinfinity.store/MyDrive/icons/mydrive.png</image:loc>
+      <image:title>MyDrive Technical Documentation &amp; REST API</image:title>
+      <image:caption>Docker deployment, Android Termux setup, chunked upload protocol, and REST API endpoints.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 14. StrangeInfinity App Store -->
+  <url>
+    <loc>https://www.strangeinfinity.store/store/</loc>
+    <lastmod>2026-10-22T12:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.strangeinfinity.store/store/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.strangeinfinity.store/store/" />
+    <image:image>
+      <image:loc>https://www.strangeinfinity.store/assets/images/logo.png</image:loc>
+      <image:title>StrangeInfinity App Store — Free &amp; Open-Source Software Marketplace</image:title>
+      <image:caption>Download Dedroid Debian Android APK, MarkView Linux AppImage/deb/rpm, MyDrive private cloud, 2048 Nexus game, and developer tools.</image:caption>
+    </image:image>
+  </url>
+
 </urlset>
