@@ -823,39 +823,23 @@
   .store-header {
     padding: calc(var(--nav-height) + var(--space-4)) 0 var(--space-3);
   }
-  .featured-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-  }
-  .apps-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-  }
-  .app-modal-box {
-    max-height: 90vh;
-    border-radius: var(--radius-lg);
-    margin: var(--space-2);
-  }
-  .app-modal-body {
-    padding: var(--space-4);
-    gap: var(--space-4);
-  }
-}
-
-@media (max-width: 600px) {
   .featured-grid,
   .apps-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
+    grid-template-columns: 1fr !important;
+    gap: var(--space-3) !important;
   }
 
-  /* ── Smartphone App Cards: Guaranteed Visible Full-Width Download Button ── */
+  /* ── Smartphone & Tablet App Cards: Guaranteed Visible Full-Width Download Button ── */
   .spotlight-card,
   .app-card {
+    display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
     padding: var(--space-3) !important;
     gap: var(--space-3) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
   }
 
   .spotlight-header,
@@ -881,38 +865,57 @@
     min-width: 0 !important;
   }
 
+  .app-meta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+
   .spotlight-action,
   .app-action {
     width: 100% !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    margin-top: 2px !important;
+    margin-top: 4px !important;
     flex-shrink: 0 !important;
   }
 
   .spotlight-action .btn-install,
   .app-action .btn-install {
     width: 100% !important;
+    min-height: 42px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 9px 16px !important;
-    font-size: var(--text-xs) !important;
-    font-weight: 600 !important;
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
     border-radius: var(--radius-full) !important;
+    background: var(--color-primary) !important;
+    color: #ffffff !important;
     box-sizing: border-box !important;
     visibility: visible !important;
     opacity: 1 !important;
     text-align: center !important;
+    text-decoration: none !important;
   }
 
+  .app-modal-box {
+    max-height: 90vh;
+    border-radius: var(--radius-lg);
+    margin: var(--space-2);
+  }
+  .app-modal-body {
+    padding: var(--space-4);
+    gap: var(--space-4);
+  }
   .modal-header {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-3);
   }
-
   .screenshots-track .screenshot-item {
     flex: 0 0 160px;
   }

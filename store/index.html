@@ -64,7 +64,88 @@
   <link rel="stylesheet" href="../assets/css/layout.css" />
   <link rel="stylesheet" href="../assets/css/components.css" />
   <link rel="stylesheet" href="../assets/css/animations.css" />
-  <link rel="stylesheet" href="store.css" />
+  <link rel="stylesheet" href="store.css?v=20261022-mobile-fix" />
+
+  <!-- Critical Smartphone Card Layout (Immediate, Uncached Visibility on Mobile) -->
+  <style id="store-mobile-override">
+    @media (max-width: 768px) {
+      .apps-grid,
+      .featured-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-3) !important;
+      }
+      .app-card,
+      .spotlight-card {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: var(--space-4) !important;
+        gap: var(--space-3) !important;
+        overflow: visible !important;
+      }
+      .app-card-header,
+      .spotlight-header {
+        display: flex !important;
+        align-items: center !important;
+        gap: var(--space-3) !important;
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+      .app-icon,
+      .spotlight-icon {
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 12px !important;
+        flex-shrink: 0 !important;
+      }
+      .app-info,
+      .spotlight-text {
+        flex: 1 !important;
+        min-width: 0 !important;
+      }
+      .app-meta {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        flex-wrap: wrap !important;
+      }
+      .app-action,
+      .spotlight-action {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        margin-top: 6px !important;
+        flex-shrink: 0 !important;
+      }
+      .app-action .btn-install,
+      .spotlight-action .btn-install {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        min-height: 42px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 10px 16px !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        border-radius: 9999px !important;
+        background: var(--color-primary) !important;
+        color: #ffffff !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35) !important;
+      }
+      .app-action .btn-install:active,
+      .spotlight-action .btn-install:active {
+        transform: scale(0.98) !important;
+      }
+    }
+  </style>
 
   <!-- JSON-LD Structured Data Schema -->
   <script type="application/ld+json">
@@ -455,7 +536,7 @@
   <!-- ═══════════════ SCRIPTS ═══════════════ -->
   <script src="../assets/js/theme.js"></script>
   <script src="../assets/js/particles.js"></script>
-  <script src="store.js"></script>
+  <script src="store.js?v=20261022-mobile-fix"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       ThemeManager.init();
