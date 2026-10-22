@@ -17,13 +17,13 @@
 
   ---
 
-  [**Explore the Website**](https://www.strangeinfinity.store/) • [**App Store (Downloads)**](https://www.strangeinfinity.store/store/) • [**Featured Products**](#-featured-products) • [**Core Mission**](#-mission--purpose) • [**Ecosystem**](#-project-ecosystem) • [**Connect**](#-connect--community)
+  [**Explore Website**](https://www.strangeinfinity.store/) • [**App Store (Downloads)**](https://www.strangeinfinity.store/store/) • [**Featured Products**](#featured-products) • [**Core Mission**](#mission--purpose) • [**Ecosystem**](#project-ecosystem--categories) • [**Connect**](#connect--community)
 
 </div>
 
 <br />
 
-## 🌌 About StrangeInfinity
+## About StrangeInfinity
 
 **[StrangeInfinity](https://www.strangeinfinity.store/)** is the official digital portal and showcase hub for the StrangeInfinity open-source ecosystem. It serves as a central platform presenting a diverse portfolio of desktop software, productivity applications, computer vision tools, and experimental utilities built with passion for the global developer community.
 
@@ -31,25 +31,25 @@ The website exists to bridge the gap between creative code experiments and every
 
 ---
 
-## 🎯 Mission & Purpose
+## Mission & Purpose
 
 At StrangeInfinity, the philosophy is simple: **build software that matters, keep it open, and prioritize user empowerment.**
 
-* **🌐 Open-Source by Default**: Everything is built transparently in public, fostering community learning, contribution, and libre software.
-* **🛡️ Privacy & Independence**: Prioritizing local-first processing, zero-telemetry architectures, and software that respects user sovereignty.
-* **⚡ Speed & Practical Utility**: Lightweight, bloat-free solutions designed to solve real problems smoothly and reliably.
-* **🔬 Curious Exploration**: Experimenting across desktop GUI applications, computer vision, AI terminal assistants, and modern web environments.
+* **Open-Source by Default**: Everything is built transparently in public, fostering community learning, contribution, and libre software.
+* **Privacy & Independence**: Prioritizing local-first processing, zero-telemetry architectures, and software that respects user sovereignty.
+* **Speed & Practical Utility**: Lightweight, bloat-free solutions designed to solve real problems smoothly and reliably.
+* **Curious Exploration**: Experimenting across desktop GUI applications, computer vision, AI terminal assistants, and modern web environments.
 
 ---
 
-## 🚀 Featured Products
+## Featured Products
 
 The StrangeInfinity portal highlights several flagship software products and open-source applications:
 
 <table>
   <tr>
     <td width="50%" valign="top">
-      <h3>🌐 Infinity Browser</h3>
+      <h3>Infinity Browser</h3>
       <p>A fast, privacy-focused desktop web browser built with Python and PyQt6. Features built-in ad blocking, local encrypted password vault, and media downloader.</p>
       <p>
         <a href="https://www.strangeinfinity.store/Infinity-Browser/"><strong>Portal »</strong></a> • 
@@ -58,7 +58,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3>✍️ Infinity Writer</h3>
+      <h3>Infinity Writer</h3>
       <p>Specialized distraction-free writing tool built to generate pristine, semantic HTML5 with native out-of-the-box dark mode support and 0 dependencies.</p>
       <p>
         <a href="https://www.strangeinfinity.store/Infinity-Writer/"><strong>Portal »</strong></a> • 
@@ -69,7 +69,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>🖐️ AirPointer Virtual Mouse</h3>
+      <h3>AirPointer Virtual Mouse</h3>
       <p>A real-time touchless virtual mouse system translating webcam hand gestures into ultra-smooth OS cursor movements using MediaPipe and OpenCV.</p>
       <p>
         <a href="https://www.strangeinfinity.store/AirPointer/"><strong>Portal »</strong></a> • 
@@ -78,7 +78,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3>📝 Cosmic Notes App</h3>
+      <h3>Cosmic Notes App</h3>
       <p>A futuristic deep-space glassmorphic markdown workspace with category tags, instant fuzzy search, and local storage encryption.</p>
       <p>
         <a href="https://www.strangeinfinity.store/Notes-App/"><strong>Portal »</strong></a> • 
@@ -89,7 +89,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>🎮 2048 Nexus</h3>
+      <h3>2048 Nexus</h3>
       <p>Cyberpunk arcade puzzle game built with Python & PyQt6 featuring multiple grid sizes (3x3 to 8x8), undo move stack, and Expectimax AI auto-solver. Installers available for Windows (.exe), Debian (.deb), and Fedora/RHEL (.rpm).</p>
       <p>
         <a href="https://www.strangeinfinity.store/2048-Nexus/"><strong>Portal »</strong></a> • 
@@ -99,7 +99,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3>🐍 Neon Snake Game</h3>
+      <h3>Neon Snake Game</h3>
       <p>Modern retro-futuristic arcade game on HTML5 Canvas with dynamic particle explosions, power-ups, and synthesized Web Audio sound effects.</p>
       <p>
         <a href="https://www.strangeinfinity.store/Snake-Game/"><strong>Portal »</strong></a> • 
@@ -110,7 +110,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>⚡ Gemini CLI Chatbot</h3>
+      <h3>Gemini CLI Chatbot</h3>
       <p>100% Pure Bash shell script AI streaming assistant. Chat in interactive REPL, pipe Unix commands, and stream responses in real-time.</p>
       <p>
         <a href="https://www.strangeinfinity.store/Gemini-CLI/"><strong>Portal »</strong></a> • 
@@ -119,7 +119,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3>🔢 CalcCosmos Calculator</h3>
+      <h3>CalcCosmos Calculator</h3>
       <p>High-precision scientific computation engine with cosmic glassmorphism UI, trigonometric operations, and persistent calculation history.</p>
       <p>
         <a href="https://www.strangeinfinity.store/CalcCosmos/"><strong>Portal »</strong></a> • 
@@ -130,7 +130,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>🤖 Dedroid (Debian on Android)</h3>
+      <h3>Dedroid (Debian on Android)</h3>
       <p>Debian GNU/Linux 13 (Trixie) rootless terminal workstation for Android with PRoot virtualization, passwordless sudo, SD card storage bridge, and developer keyboard toolbar.</p>
       <p>
         <a href="https://www.strangeinfinity.store/Dedroid/"><strong>Portal »</strong></a> • 
@@ -140,7 +140,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3>📑 MarkView Desktop Reader</h3>
+      <h3>MarkView Desktop Reader</h3>
       <p>High-performance desktop Markdown application in Tauri 2, Rust & React 19. Features Shiki syntax highlighting, KaTeX math, Mermaid diagrams, and real-time filesystem watcher.</p>
       <p>
         <a href="https://www.strangeinfinity.store/MarkView/"><strong>Portal »</strong></a> • 
@@ -152,7 +152,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>☁️ MyDrive Cloud Storage</h3>
+      <h3>MyDrive Cloud Storage</h3>
       <p>High-performance, self-hosted private cloud storage and media streaming server. Resumable 4MB chunked uploads, HTTP 206 video streaming, contacts sync, and 100% data privacy.</p>
       <p>
         <a href="https://www.strangeinfinity.store/MyDrive/"><strong>Portal »</strong></a> • 
@@ -162,7 +162,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3>✅ ToDo Task Manager</h3>
+      <h3>ToDo Task Manager</h3>
       <p>Distraction-free personal task management and Pomodoro workstation built with cosmic glassmorphism and 100% local persistence.</p>
       <p>
         <a href="https://www.strangeinfinity.store/To-Do/"><strong>Portal »</strong></a> • 
@@ -175,7 +175,7 @@ The StrangeInfinity portal highlights several flagship software products and ope
 
 ---
 
-## 🧭 Project Ecosystem & Categories
+## Project Ecosystem & Categories
 
 The StrangeInfinity hub categorizes and tracks various tools across different technology domains:
 
@@ -186,7 +186,7 @@ The StrangeInfinity hub categorizes and tracks various tools across different te
 
 ---
 
-## 💎 Core Values
+## Core Values
 
 ```
            ┌───────────────────────────────────────────────┐
@@ -207,24 +207,24 @@ The StrangeInfinity hub categorizes and tracks various tools across different te
 
 ---
 
-## 🌐 Explore the Live Site
+## Explore the Live Site
 
 Visit the live website to browse interactive project cards, test live demos, and check out product documentation:
 
-👉 **[strangeinfinity.store](https://www.strangeinfinity.store/)**
+* **[strangeinfinity.store](https://www.strangeinfinity.store/)**
 
 ---
 
-## 🤝 Connect & Community
+## Connect & Community
 
 Feedback, collaboration, and ideas are always welcome. Connect with StrangeInfinity across the web:
 
-* 🌐 **Website**: [strangeinfinity.store](https://www.strangeinfinity.store/)
-* 🐙 **GitHub**: [@strangeinfinity](https://github.com/strangeinfinity/)
-* 𝕏 **Twitter / X**: [@strang3infinity](https://x.com/strang3infinity)
-* 📸 **Instagram**: [@strangeinfinity.dev](https://instagram.com/strangeinfinity.dev)
-* 💼 **LinkedIn**: [Ayush Kumar Maurya](https://in.linkedin.com/in/ayush-kumar-maurya/)
-* ✉️ **Email**: [strangeinfinity.dev@gmail.com](mailto:strangeinfinity.dev@gmail.com)
+* **Website**: [strangeinfinity.store](https://www.strangeinfinity.store/)
+* **GitHub**: [@strangeinfinity](https://github.com/strangeinfinity/)
+* **Twitter / X**: [@strang3infinity](https://x.com/strang3infinity)
+* **Instagram**: [@strangeinfinity.dev](https://instagram.com/strangeinfinity.dev)
+* **LinkedIn**: [Ayush Kumar Maurya](https://in.linkedin.com/in/ayush-kumar-maurya/)
+* **Email**: [strangeinfinity.dev@gmail.com](mailto:strangeinfinity.dev@gmail.com)
 
 ---
 

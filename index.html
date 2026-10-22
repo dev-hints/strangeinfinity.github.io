@@ -11,9 +11,10 @@
   gtag('config', 'G-RCEZHSD62X');
 </script>
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
 
   <!-- Security Headers & Policy -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net data:; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://img.shields.io https://avatars.githubusercontent.com https://github.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self';" />
@@ -100,7 +101,7 @@
     <div class="container nav-inner">
       <!-- Logo -->
       <a href="#hero" class="nav-logo" aria-label="StrangeInfinity Home">
-        <img src="assets/images/logo.png" alt="StrangeInfinity" width="38" height="38" loading="lazy" />
+        <img src="assets/images/logo-icon.png" alt="StrangeInfinity" width="38" height="38" loading="lazy" />
         <span>Strange<span style="color:var(--color-secondary)">Infinity</span></span>
       </a>
       <!-- Desktop Nav Links -->
@@ -261,6 +262,14 @@
       <p class="section-subtitle">Major StrangeInfinity products crafted with precision, performance, and passion.</p>
     </div>
     <div id="products-grid" class="products-grid" role="list" aria-label="Featured product cards"></div>
+    <div id="products-more-wrap" class="reveal" style="text-align:center;margin-top:var(--space-8);display:flex;align-items:center;justify-content:center;gap:var(--space-3);flex-wrap:wrap;">
+      <button id="products-toggle-btn" class="btn btn-outline" type="button" aria-expanded="false" aria-controls="products-grid">
+        <i class="fa-solid fa-chevron-down" id="products-toggle-icon"></i> <span id="products-toggle-text">View More Products</span>
+      </button>
+      <a href="store/" class="btn btn-primary">
+        <i class="fa-solid fa-bag-shopping"></i> <span>Explore App Store</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -333,7 +342,7 @@
     <div class="footer-inner">
       <div>
         <a href="#hero" class="footer-logo" aria-label="StrangeInfinity home">
-          <img src="assets/images/logo.png" alt="StrangeInfinity" width="36" height="36" loading="lazy" />
+          <img src="assets/images/logo-icon.png" alt="StrangeInfinity" width="36" height="36" loading="lazy" />
           <span class="footer-logo-name">StrangeInfinity</span>
         </a>
         <p class="footer-tagline">Building the future, one commit at a time. Open-source software from the edge of the cosmos.</p>

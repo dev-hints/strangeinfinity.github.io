@@ -11,13 +11,15 @@
   </script>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/logo.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/logo.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/logo.png" />
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png" />
 
   <!-- Security Headers & Policy -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net data:; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://img.shields.io https://avatars.githubusercontent.com https://github.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net data:; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://img.shields.io https://avatars.githubusercontent.com https://github.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), interest-cohort=()" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- Primary Meta Tags -->
@@ -37,9 +39,11 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.strangeinfinity.store/store/" />
   <meta property="og:site_name" content="StrangeInfinity Store" />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="StrangeInfinity App Store — Free Software, APKs &amp; Desktop Tools" />
   <meta property="og:description" content="Browse and download free, open-source software, desktop applications, Android APKs, and developer utilities." />
   <meta property="og:image" content="https://www.strangeinfinity.store/assets/images/logo.png" />
+  <meta property="og:image:alt" content="StrangeInfinity App Store" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -47,6 +51,7 @@
   <meta name="twitter:title" content="StrangeInfinity App Store — Free Software, APKs &amp; Desktop Tools" />
   <meta name="twitter:description" content="Browse and download free, open-source software, desktop applications, Android APKs, and developer utilities." />
   <meta name="twitter:image" content="https://www.strangeinfinity.store/assets/images/logo.png" />
+  <meta name="twitter:image:alt" content="StrangeInfinity App Store" />
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,7 +65,88 @@
   <link rel="stylesheet" href="../assets/css/layout.css" />
   <link rel="stylesheet" href="../assets/css/components.css" />
   <link rel="stylesheet" href="../assets/css/animations.css" />
-  <link rel="stylesheet" href="store.css" />
+  <link rel="stylesheet" href="store.css?v=20261022-mobile-fix" />
+
+  <!-- Critical Smartphone Card Layout (Immediate, Uncached Visibility on Mobile) -->
+  <style id="store-mobile-override">
+    @media (max-width: 768px) {
+      .apps-grid,
+      .featured-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-3) !important;
+      }
+      .app-card,
+      .spotlight-card {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: var(--space-4) !important;
+        gap: var(--space-3) !important;
+        overflow: visible !important;
+      }
+      .app-card-header,
+      .spotlight-header {
+        display: flex !important;
+        align-items: center !important;
+        gap: var(--space-3) !important;
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+      .app-icon,
+      .spotlight-icon {
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 12px !important;
+        flex-shrink: 0 !important;
+      }
+      .app-info,
+      .spotlight-text {
+        flex: 1 !important;
+        min-width: 0 !important;
+      }
+      .app-meta {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        flex-wrap: wrap !important;
+      }
+      .app-action,
+      .spotlight-action {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        margin-top: 6px !important;
+        flex-shrink: 0 !important;
+      }
+      .app-action .btn-install,
+      .spotlight-action .btn-install {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        min-height: 42px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 10px 16px !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        border-radius: 9999px !important;
+        background: var(--color-primary) !important;
+        color: #ffffff !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35) !important;
+      }
+      .app-action .btn-install:active,
+      .spotlight-action .btn-install:active {
+        transform: scale(0.98) !important;
+      }
+    }
+  </style>
 
   <!-- JSON-LD Structured Data Schema -->
   <script type="application/ld+json">
@@ -261,7 +347,7 @@
       <div class="container nav-inner">
         <!-- Logo -->
         <a href="../index.html" class="nav-logo" aria-label="StrangeInfinity Home">
-          <img src="../assets/images/logo.png" alt="StrangeInfinity" width="38" height="38" loading="lazy" />
+          <img src="../assets/images/logo-icon.png" alt="StrangeInfinity" width="38" height="38" loading="lazy" />
           <span>Strange<span style="color:var(--color-secondary)">Infinity</span></span>
         </a>
 
@@ -422,7 +508,7 @@
       <div class="footer-inner">
         <div>
           <a href="../index.html" class="footer-logo" aria-label="StrangeInfinity home">
-            <img src="../assets/images/logo.png" alt="StrangeInfinity" width="32" height="32" loading="lazy" />
+            <img src="../assets/images/logo-icon.png" alt="StrangeInfinity" width="32" height="32" loading="lazy" />
             <span class="footer-logo-name">StrangeInfinity Store</span>
           </a>
           <p class="footer-tagline">Open-source software store. Free, standalone downloads with verified binaries and zero tracking.</p>
@@ -451,7 +537,7 @@
   <!-- ═══════════════ SCRIPTS ═══════════════ -->
   <script src="../assets/js/theme.js"></script>
   <script src="../assets/js/particles.js"></script>
-  <script src="store.js"></script>
+  <script src="store.js?v=20261022-mobile-fix"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       ThemeManager.init();
