@@ -626,37 +626,84 @@ const ProjectRenderer = (() => {
     });
   }
 
-  /** Render featured products */
+  let productsExpanded = false;
+  const PRODUCTS_INITIAL_COUNT = 4;
+
+  /** Render featured products (Minimal, Clean & Professional) */
   function renderProducts() {
     const container = document.getElementById('products-grid');
     if (!container) return;
 
-    container.innerHTML = SI_CONFIG.products.map((p, i) => `
-      <article class="product-card ${p.featured ? 'featured' : ''} reveal delay-${i + 1}"
+    const visibleProducts = productsExpanded
+      ? SI_CONFIG.products
+      : SI_CONFIG.products.slice(0, PRODUCTS_INITIAL_COUNT);
+
+    container.innerHTML = visibleProducts.map((p, i) => {
+      const primaryBadge = p.tags && p.tags[0] ? p.tags[0] : 'Open Source';
+      const visibleTags = (p.tags || []).slice(0, 3);
+
+      return `
+      <article class="product-card ${p.featured ? 'featured' : ''} reveal revealed"
                role="article" aria-label="${p.name}">
-        <div class="product-icon-wrap" aria-hidden="true">${p.icon}</div>
+        <div class="product-card-top">
+          <div class="product-icon-wrap" aria-hidden="true">${p.icon}</div>
+          <span class="product-badge">${primaryBadge}</span>
+        </div>
         <h3 class="product-title">${p.name}</h3>
         <p class="product-desc">${p.desc}</p>
-        <ul class="product-features" aria-label="Features">
-          ${p.features.map(f => `<li class="product-feature">${f}</li>`).join('')}
-        </ul>
+        <div class="product-tags" aria-label="Tags">
+          ${visibleTags.map(t => `<span class="product-tag">${t}</span>`).join('')}
+        </div>
         <div class="product-actions">
-          ${p.links.docs ? `<a href="${p.links.docs}" target="_blank" rel="noopener noreferrer"
-               class="btn btn-ghost" aria-label="View ${p.name} Documentation">
-               <i class="fa-solid fa-book"></i> Docs</a>` : ''}
-          ${p.links.github ? `<a href="${p.links.github}" target="_blank" rel="noopener noreferrer"
-               class="btn btn-outline" aria-label="View ${p.name} on GitHub">
-               <span><i class="fa-brands fa-github"></i> GitHub</span></a>` : ''}
-          ${p.links.download ? `<a href="${p.links.download}" target="_blank" rel="noopener noreferrer"
-               class="btn btn-primary" aria-label="Download ${p.name}">
+          ${p.links.download ? `<a href="${p.links.download}" ${p.links.download.startsWith('http') ? 'download rel="noopener noreferrer"' : ''}
+               class="btn btn-primary btn-sm" aria-label="Download ${p.name}">
                <i class="fa-solid fa-download"></i> Download</a>` : ''}
-          ${p.links.demo ? `<a href="${p.links.demo}" target="_blank" rel="noopener noreferrer"
-               class="btn ${p.links.download ? 'btn-outline' : 'btn-primary'}" aria-label="${p.name} live demo">
-               ${p.links.download ? '<span><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</span>' : '<i class="fa-solid fa-rocket"></i> Demo'}</a>` : ''}
-          ${!p.links.github && !p.links.demo && !p.links.docs && !p.links.download ? `<span class="btn btn-ghost" style="opacity:0.5;cursor:default">In Development</span>` : ''}
+          ${p.links.demo && !p.links.download ? `<a href="${p.links.demo}" target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary btn-sm" aria-label="${p.name} Live Demo">
+               <i class="fa-solid fa-rocket"></i> Demo</a>` : ''}
+          ${p.links.docs ? `<a href="${p.links.docs}" target="_blank" rel="noopener noreferrer"
+               class="btn btn-ghost btn-sm" aria-label="View ${p.name} Documentation">
+               <i class="fa-solid fa-book"></i> Docs</a>` : ''}
+          ${p.links.demo && p.links.download ? `<a href="${p.links.demo}" target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline btn-sm" aria-label="View ${p.name} Showcase">
+               <span><i class="fa-solid fa-arrow-up-right-from-square"></i> Portal</span></a>` : ''}
+          ${p.links.github ? `<a href="${p.links.github}" target="_blank" rel="noopener noreferrer"
+               class="btn btn-ghost btn-sm" aria-label="View ${p.name} on GitHub">
+               <i class="fa-brands fa-github"></i> GitHub</a>` : ''}
         </div>
       </article>
-    `).join('');
+      `;
+    }).join('');
+
+    updateProductsToggleButton();
+  }
+
+  function updateProductsToggleButton() {
+    const toggleBtn = document.getElementById('products-toggle-btn');
+    if (!toggleBtn) return;
+
+    const remaining = SI_CONFIG.products.length - PRODUCTS_INITIAL_COUNT;
+    if (productsExpanded) {
+      toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-up"></i> <span>Show Fewer Products</span>';
+      toggleBtn.setAttribute('aria-expanded', 'true');
+    } else {
+      toggleBtn.innerHTML = `<i class="fa-solid fa-chevron-down"></i> <span>View All Products (${remaining} more)</span>`;
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  function setupProductsToggle() {
+    const toggleBtn = document.getElementById('products-toggle-btn');
+    if (!toggleBtn) return;
+
+    toggleBtn.addEventListener('click', () => {
+      productsExpanded = !productsExpanded;
+      renderProducts();
+      if (!productsExpanded) {
+        const section = document.getElementById('products');
+        if (section) section.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
   }
 
   /** Render tech stack */
@@ -797,6 +844,7 @@ const ProjectRenderer = (() => {
   function init() {
     renderProjects();
     renderProducts();
+    setupProductsToggle();
     renderTech();
     renderRepos();
     renderTimeline();
