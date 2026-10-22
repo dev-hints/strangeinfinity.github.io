@@ -281,10 +281,19 @@
   padding: var(--space-4);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-4);
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: var(--shadow-sm);
+}
+
+.spotlight-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1;
+  min-width: 0;
 }
 
 .spotlight-card:hover {
@@ -375,11 +384,20 @@
   padding: var(--space-4);
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  justify-content: space-between;
+  gap: var(--space-4);
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: var(--shadow-sm);
   outline: none;
+}
+
+.app-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
 }
 
 .app-card:hover,
@@ -824,31 +842,77 @@
   }
 }
 
-@media (max-width: 480px) {
-  .spotlight-card {
-    flex-direction: column;
-    align-items: flex-start;
+@media (max-width: 600px) {
+  .featured-grid,
+  .apps-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
   }
-  .spotlight-action {
-    width: 100%;
-  }
-  .spotlight-action .btn-install {
-    width: 100%;
-    justify-content: center;
-  }
+
+  /* ── Smartphone App Cards: Guaranteed Visible Full-Width Download Button ── */
+  .spotlight-card,
   .app-card {
-    padding: var(--space-3);
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: var(--space-3) !important;
+    gap: var(--space-3) !important;
   }
+
+  .spotlight-header,
+  .app-card-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--space-3) !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .spotlight-icon,
   .app-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 12px;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 12px !important;
+    flex-shrink: 0 !important;
   }
+
+  .spotlight-text,
+  .app-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+
+  .spotlight-action,
+  .app-action {
+    width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-top: 2px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .spotlight-action .btn-install,
+  .app-action .btn-install {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 9px 16px !important;
+    font-size: var(--text-xs) !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-full) !important;
+    box-sizing: border-box !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    text-align: center !important;
+  }
+
   .modal-header {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-3);
   }
+
   .screenshots-track .screenshot-item {
     flex: 0 0 160px;
   }

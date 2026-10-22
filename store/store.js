@@ -673,6 +673,28 @@ const AppStore = (() => {
   let categorySelect, sortSelect;
   let modalEl, modalContent;
 
+  // ── Cybersecurity Helpers (Defense-in-Depth Sanitization) ──
+  function escapeHTML(str) {
+    if (typeof str !== 'string') return '';
+    return str.replace(/[&<>'"]/g, tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag));
+  }
+
+  function sanitizeUrl(url) {
+    if (typeof url !== 'string') return '#';
+    const trimmed = url.trim();
+    // Allow strict https://, http://, /, ./, ../ paths; block dangerous schemes like javascript:, data:, vbscript:
+    if (/^(https?:\/\/|\/|\.\/|\.\.\/)/i.test(trimmed)) {
+      return trimmed;
+    }
+    return '#';
+  }
+
   function init() {
     gridEl = document.getElementById('store-grid');
     searchInput = document.getElementById('store-search');
@@ -774,19 +796,21 @@ const AppStore = (() => {
 
     section.style.display = 'block';
     track.innerHTML = featured.map(app => `
-      <div class="spotlight-card" onclick="AppStore.openModalById('${app.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();AppStore.openModalById('${app.id}');}" tabindex="0" role="button" aria-label="${app.name} details">
-        <img src="${app.icon}" alt="${app.name}" class="spotlight-icon" loading="lazy" width="56" height="56" />
-        <div class="spotlight-text">
-          <div class="spotlight-badge-row">
-            <span class="spotlight-badge">${app.badge}</span>
-            <span class="spotlight-platform">${app.platformBadge}</span>
+      <div class="spotlight-card" onclick="AppStore.openModalById('${escapeHTML(app.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();AppStore.openModalById('${escapeHTML(app.id)}');}" tabindex="0" role="button" aria-label="${escapeHTML(app.name)} details">
+        <div class="spotlight-header">
+          <img src="${sanitizeUrl(app.icon)}" alt="${escapeHTML(app.name)}" class="spotlight-icon" loading="lazy" width="56" height="56" />
+          <div class="spotlight-text">
+            <div class="spotlight-badge-row">
+              <span class="spotlight-badge">${escapeHTML(app.badge)}</span>
+              <span class="spotlight-platform">${escapeHTML(app.platformBadge)}</span>
+            </div>
+            <h3 class="spotlight-title">${escapeHTML(app.name)}</h3>
+            <p class="spotlight-tagline">${escapeHTML(app.tagline)}</p>
           </div>
-          <h3 class="spotlight-title">${app.name}</h3>
-          <p class="spotlight-tagline">${app.tagline}</p>
         </div>
         <div class="spotlight-action" onclick="event.stopPropagation()">
-          <a href="${app.primaryDownload.url}" ${app.primaryDownload.url.startsWith('http') ? 'download' : ''} class="btn-install" aria-label="Download ${app.name}">
-            <i class="fa-solid fa-download"></i> <span>${app.primaryDownload.label}</span>
+          <a href="${sanitizeUrl(app.primaryDownload.url)}" ${app.primaryDownload.url.startsWith('http') ? 'download rel="noopener noreferrer"' : ''} class="btn-install" aria-label="Download ${escapeHTML(app.name)}">
+            <i class="fa-solid fa-download"></i> <span>${escapeHTML(app.primaryDownload.label)}</span>
           </a>
         </div>
       </div>
@@ -879,20 +903,22 @@ const AppStore = (() => {
     if (emptyEl) emptyEl.style.display = 'none';
 
     gridEl.innerHTML = filtered.map(app => `
-      <article class="app-card" onclick="AppStore.openModalById('${app.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();AppStore.openModalById('${app.id}');}" tabindex="0" role="button" aria-label="${app.name} details">
-        <img src="${app.icon}" alt="${app.name}" class="app-icon" loading="lazy" width="52" height="52" />
-        <div class="app-info">
-          <h3 class="app-name">${app.name}</h3>
-          <p class="app-tagline">${app.tagline}</p>
-          <div class="app-meta">
-            <span class="app-chip">${app.platformBadge}</span>
-            <span class="app-chip">${app.size}</span>
-            <span class="app-chip app-license">${app.license}</span>
+      <article class="app-card" onclick="AppStore.openModalById('${escapeHTML(app.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();AppStore.openModalById('${escapeHTML(app.id)}');}" tabindex="0" role="button" aria-label="${escapeHTML(app.name)} details">
+        <div class="app-card-header">
+          <img src="${sanitizeUrl(app.icon)}" alt="${escapeHTML(app.name)}" class="app-icon" loading="lazy" width="52" height="52" />
+          <div class="app-info">
+            <h3 class="app-name">${escapeHTML(app.name)}</h3>
+            <p class="app-tagline">${escapeHTML(app.tagline)}</p>
+            <div class="app-meta">
+              <span class="app-chip">${escapeHTML(app.platformBadge)}</span>
+              <span class="app-chip">${escapeHTML(app.size)}</span>
+              <span class="app-chip app-license">${escapeHTML(app.license)}</span>
+            </div>
           </div>
         </div>
         <div class="app-action" onclick="event.stopPropagation()">
-          <a href="${app.primaryDownload.url}" ${app.primaryDownload.url.startsWith('http') ? 'download' : ''} class="btn-install btn-sm" aria-label="Download ${app.name}">
-            <i class="fa-solid fa-download"></i> <span>${app.primaryDownload.label}</span>
+          <a href="${sanitizeUrl(app.primaryDownload.url)}" ${app.primaryDownload.url.startsWith('http') ? 'download rel="noopener noreferrer"' : ''} class="btn-install btn-sm" aria-label="Download ${escapeHTML(app.name)}">
+            <i class="fa-solid fa-download"></i> <span>${escapeHTML(app.primaryDownload.label)}</span>
           </a>
         </div>
       </article>
@@ -983,15 +1009,15 @@ const AppStore = (() => {
 
     modalContent.innerHTML = `
       <div class="modal-header">
-        <img src="${app.icon}" alt="${app.name}" class="modal-icon" width="64" height="64" />
+        <img src="${sanitizeUrl(app.icon)}" alt="${escapeHTML(app.name)}" class="modal-icon" width="64" height="64" />
         <div class="modal-title-wrap">
-          <h2 class="modal-title">${app.name}</h2>
-          <p class="modal-subtitle">${app.tagline}</p>
+          <h2 class="modal-title">${escapeHTML(app.name)}</h2>
+          <p class="modal-subtitle">${escapeHTML(app.tagline)}</p>
           <div class="modal-meta-row">
-            <span class="modal-badge">${app.platformBadge}</span>
-            <span class="modal-badge">${app.size}</span>
-            <span class="modal-badge">${app.version}</span>
-            <span class="modal-badge">${app.license}</span>
+            <span class="modal-badge">${escapeHTML(app.platformBadge)}</span>
+            <span class="modal-badge">${escapeHTML(app.size)}</span>
+            <span class="modal-badge">${escapeHTML(app.version)}</span>
+            <span class="modal-badge">${escapeHTML(app.license)}</span>
           </div>
         </div>
       </div>
@@ -1001,10 +1027,10 @@ const AppStore = (() => {
         <h4 class="modal-section-title"><i class="fa-solid fa-download"></i> Available Downloads</h4>
         <div class="packages-list">
           ${app.packages.map(pkg => `
-            <a href="${pkg.url}" ${pkg.url.startsWith('http') ? 'download' : ''} class="pkg-row ${pkg.recommended ? 'recommended' : ''}">
+            <a href="${sanitizeUrl(pkg.url)}" ${pkg.url.startsWith('http') ? 'download rel="noopener noreferrer"' : ''} class="pkg-row ${pkg.recommended ? 'recommended' : ''}">
               <div class="pkg-details">
-                <span class="pkg-name">${pkg.name}</span>
-                <span class="pkg-meta">${pkg.arch} • ${pkg.size}</span>
+                <span class="pkg-name">${escapeHTML(pkg.name)}</span>
+                <span class="pkg-meta">${escapeHTML(pkg.arch)} • ${escapeHTML(pkg.size)}</span>
               </div>
               <span class="pkg-download-btn"><i class="fa-solid fa-cloud-arrow-down"></i> Download</span>
             </a>
@@ -1019,8 +1045,8 @@ const AppStore = (() => {
           <div class="screenshots-track">
             ${app.screenshots.map(s => `
               <div class="screenshot-item">
-                <img src="${s.src}" alt="${s.title}" loading="lazy" class="screenshot-img" />
-                <span class="screenshot-title">${s.title}</span>
+                <img src="${sanitizeUrl(s.src)}" alt="${escapeHTML(s.title)}" loading="lazy" class="screenshot-img" />
+                <span class="screenshot-title">${escapeHTML(s.title)}</span>
               </div>
             `).join('')}
           </div>
@@ -1031,15 +1057,15 @@ const AppStore = (() => {
       <div class="modal-features">
         <h4 class="modal-section-title"><i class="fa-solid fa-check-circle" style="color:#10b981"></i> Highlights</h4>
         <ul class="features-list">
-          ${app.highlights.map(f => `<li>${f}</li>`).join('')}
+          ${app.highlights.map(f => `<li>${escapeHTML(f)}</li>`).join('')}
         </ul>
       </div>
 
       <!-- Action Footer Links -->
       <div class="modal-footer">
-        <a href="${app.portalUrl}" class="btn-modal-link"><i class="fa-solid fa-globe"></i> Showcase</a>
-        <a href="${app.docsUrl}" class="btn-modal-link"><i class="fa-solid fa-book"></i> Documentation</a>
-        <a href="${app.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn-modal-link"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="${sanitizeUrl(app.portalUrl)}" class="btn-modal-link"><i class="fa-solid fa-globe"></i> Showcase</a>
+        <a href="${sanitizeUrl(app.docsUrl)}" class="btn-modal-link"><i class="fa-solid fa-book"></i> Documentation</a>
+        <a href="${sanitizeUrl(app.githubUrl)}" target="_blank" rel="noopener noreferrer" class="btn-modal-link"><i class="fa-brands fa-github"></i> GitHub</a>
       </div>
     `;
 
